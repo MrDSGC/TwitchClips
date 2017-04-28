@@ -8,7 +8,7 @@ class Root extends React.Component {
   render() {
     return(
       <div>
-        React is up and running!
+        Working app
       </div>
     );
   }
