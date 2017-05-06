@@ -1,5 +1,6 @@
 import React from 'react';
-
+import GameNav from '../nav_bar/game_nav'
+import WatchWindowContainer from './watch_window_container'
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -10,10 +11,10 @@ class MainPage extends React.Component {
     return(
       <div className='full-page'>
         <nav className='game-nav'>
-
+          <GameNav />
         </nav>
         <div className'watch-window'>
-          { WatchWindow }
+          <WatchWindowContainer />
         </div>
       </div>
 
