@@ -9,6 +9,10 @@ a {
   color: #3897f0;
 }
 
+html body {
+  height: 100%;
+  margin: 0;
+}
 
 .full-page {
   display: flex;
@@ -32,4 +36,17 @@ a {
   -webkit-text-stroke-color: white;
   font-size: 30px;
   color: #6441a4;
+}
+
+.game-list {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.game-item {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -5,20 +5,20 @@ const GameNav = () => (
     <div className='game-title'>
       Twitch Watch
     </div>
-    <ul>
-      <li>
-        <div>Dota 2</div>
+    <ul className= "game-list">
+      <li className="game-item">
+        <div >Dota 2</div>
       </li>
-      <li>
+      <li className="game-item">
         <div>CS:GO</div>
       </li>
-      <li>
+      <li className="game-item">
         <div>HeartStone</div>
       </li>
-      <li>
+      <li className="game-item">
         <div>Starcraft 2</div>
       </li>
-      <li>
+      <li className="game-item">
         <div>Leauge of Legends</div>
       </li>
     </ul>
