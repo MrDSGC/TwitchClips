@@ -3,33 +3,23 @@ import React from 'react';
 const GameNav = () => (
   <div className="nav-bar">
     <div className='game-title'>
-      TWITCH WATCH
+      Twitch Watch
     </div>
     <ul>
       <li>
-        <div>
-          Dota 2
-        </div>
+        <div>Dota 2</div>
       </li>
       <li>
-        <div>
-          CS:GO
-        </div>
+        <div>CS:GO</div>
       </li>
       <li>
-        <div>
-          HeartStone
-        </div>
+        <div>HeartStone</div>
       </li>
       <li>
-        <div>
-          StarCraft 2
-        </div>
+        <div>Starcraft 2</div>
       </li>
       <li>
-        <div>
-          Leauge of Legends
-        </div>
+        <div>Leauge of Legends</div>
       </li>
     </ul>
   </div>
