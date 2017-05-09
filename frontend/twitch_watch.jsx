@@ -5,8 +5,6 @@ import Modal from 'react-modal';
 import configureStore from './store/store';
 
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   store = configureStore();

@@ -7,14 +7,14 @@ class MainPage extends React.Component {
     super(props)
   }
 
+  // <WatchWindowContainer />
   render () {
     return(
       <div className='full-page'>
         <nav className='game-nav'>
           <GameNav />
         </nav>
-        <div className'watch-window'>
-          <WatchWindowContainer />
+        <div className='watch-window'>
         </div>
       </div>
 

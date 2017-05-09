@@ -1,10 +1,9 @@
 import React from 'react';
-import GameNavItem from 'game_nav_item'
 
 const GameNav = () => (
   <div className="nav-bar">
-    <div>
-      Games
+    <div className='game-title'>
+      TWITCH WATCH
     </div>
     <ul>
       <li>
@@ -29,7 +28,7 @@ const GameNav = () => (
       </li>
       <li>
         <div>
-          Leauge of Legends 
+          Leauge of Legends
         </div>
       </li>
     </ul>
