@@ -22,6 +22,9 @@ const GameNav = () => (
       <li className="game-item">
         <div>Leauge of Legends</div>
       </li>
+      <li className="game-item">
+        <div>Add a Game</div>
+      </li>
     </ul>
   </div>
 )

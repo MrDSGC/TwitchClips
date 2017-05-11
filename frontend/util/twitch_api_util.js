@@ -9,7 +9,6 @@ export const getTrendingClips = () => {
   })
 };
 
-
 export const getGameClips = (game) => {
   return $.ajax({
     method:"GET",

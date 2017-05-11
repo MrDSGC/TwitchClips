@@ -1,13 +1,12 @@
 import React from 'react';
-import GameNav from '../nav_bar/game_nav'
-import WatchWindowContainer from './watch_window_container'
+import GameNav from '../nav_bar/game_nav';
+import WatchWindow from './watch_window';
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props)
   }
 
-  // <WatchWindowContainer />
   render () {
     return(
       <div className='full-page'>
@@ -15,6 +14,7 @@ class MainPage extends React.Component {
           <GameNav />
         </nav>
         <div className='watch-window'>
+          <WatchWindow />
         </div>
       </div>
 

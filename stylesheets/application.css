@@ -9,9 +9,17 @@ a {
   color: #3897f0;
 }
 
-html body {
+html {
+  height: 100%;
+}
+
+body {
   height: 100%;
   margin: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 .full-page {
@@ -50,4 +58,11 @@ html body {
   flex-direction: row;
   justify-content: space-between;
   border-top: 1px solid white;
+}
+.game-item:last-of-type {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
 }

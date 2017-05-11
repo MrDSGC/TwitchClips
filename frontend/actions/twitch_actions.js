@@ -7,7 +7,7 @@ export const receiveClips = clips => ({
   clips
 })
 
-export const fetchGameClips = game => disptch => (
+export const fetchGameClips = game => dispatch => (
   APIUtil.getGameClips(game)
     .then(clips => dispatch(receiveClips(clips)))
 )
@@ -17,4 +17,7 @@ export const fetchTrendingClips = () => dispatch => (
     .then(clips => dispatch(receiveClips(clips)))
 )
 
-export const fetchChannelClips
+export const fetchChannelClips = channel => dispatch => (
+  APIUtil.getChannelClip(channel)
+    .then(clips => dispatch(receiveClips(clips)))
+)
