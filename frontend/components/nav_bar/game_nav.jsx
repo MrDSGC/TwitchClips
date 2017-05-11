@@ -3,10 +3,11 @@ import React from 'react';
 const GameNav = () => (
   <div className="nav-bar">
     <div className='game-title'>
-      Twitch Watch
+      Twitch Klips
     </div>
     <ul className= "game-list">
       <li className="game-item">
+        <img src=''/>
         <div >Dota 2</div>
       </li>
       <li className="game-item">
