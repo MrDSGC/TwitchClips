@@ -7,6 +7,7 @@ class ClipList extends React.Component {
 
   componentWillMount() {
     this.props.fetchTrendingClips()
+    
   }
 
   render () {
