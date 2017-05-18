@@ -10,7 +10,7 @@ class ClipView extends React.Component {
       <div>
         {this.props.clip}
         <div>
-          details
+          
         </div>
       </div>
     )
