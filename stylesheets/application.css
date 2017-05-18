@@ -11,27 +11,30 @@ a {
 
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
 }
 
 #root {
   height: 100%;
+  width:100%;
 }
 
 .full-page {
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
 }
-
 
 .game-nav {
   background-color: #6441a4;
-
+  width: 20%;
 }
 
 .nav-bar {
@@ -45,6 +48,7 @@ body {
   font-size: 30px;
   color: #6441a4;
 }
+
 
 .game-list {
   color: white;
@@ -65,4 +69,19 @@ body {
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid white;
+}
+
+.watch-window {
+  width: 80%;
+}
+
+.clip-list-container {
+  width: 100%;
+}
+
+.clip-list {
+  list-style-type: none;
+  display:flex;
+  flex-direction: row;
+  overflow: scroll;
 }

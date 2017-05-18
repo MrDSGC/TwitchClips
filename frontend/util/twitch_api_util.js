@@ -17,8 +17,10 @@ export const getGameClips = (game) => {
   return $.ajax({
     method:"GET",
     url:'https://api.twitch.tv/kraken/clips/top',
-    'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
-    'Accept': 'application/vnd.twitchtv.v5+json',
+    headers: {
+      'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    },
     data: { limit: 50,
             trending: true,
             game: game,
@@ -31,8 +33,10 @@ export const getChannelClips = (channel) => {
   return $.ajax({
     method:"GET",
     url:'https://api.twitch.tv/kraken/clips/top',
-    'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
-    'Accept': 'application/vnd.twitchtv.v5+json',
+    headers: {
+      'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    },
     data: { limit: 50,
             trending: true,
             channel: channel,
