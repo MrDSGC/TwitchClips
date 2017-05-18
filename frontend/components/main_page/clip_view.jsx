@@ -9,6 +9,9 @@ class ClipView extends React.Component {
     return(
       <div>
         {this.props.clip}
+        <div>
+          details
+        </div>
       </div>
     )
   };
