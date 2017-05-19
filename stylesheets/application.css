@@ -77,10 +77,15 @@ body {
   width: 79%;
 }
 
+.window {
+  height: 100%;
+  display: flex;
+
+}
 .clip-list-section {
-  position: relative;
+  position: fixed;
   bottom: 0;
-  flex: 1;
+  width: calc(100% - 268.8px);
 }
 
 .clip-list-container {
@@ -133,6 +138,13 @@ body {
   visibility: visible;
 }
 
-.clip-view-section {
-  flex: 9;
+.clips-genre {
+  color: white;
+  background-color: #6441a4;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  border: 1px white solid;
+  bottom: 0;
+  
 }

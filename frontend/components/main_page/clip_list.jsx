@@ -35,7 +35,7 @@ class ClipList extends React.Component {
     return(
       <div className="clips-list-container">
         <div className="clips-genre">
-        
+          Trending
         </div>
         <ul className="clip-list">
           {this.clipList()}
