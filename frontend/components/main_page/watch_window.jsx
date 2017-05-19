@@ -4,10 +4,10 @@ import ClipViewContainer from './clip_view_container';
 
 const WatchWindow = () => (
   // <ClipViewContainer />
-  <div className="watch-window">
-    <div>
+  <div className="window">
+    <div className="clip-view-section">
     </div>
-    <div>
+    <div className="clip-list-section">
       <ClipListContainer />
     </div>
   </div>

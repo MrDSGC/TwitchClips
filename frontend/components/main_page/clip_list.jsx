@@ -5,21 +5,26 @@ class ClipList extends React.Component {
     super(props)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTrendingClips()
   }
 
   clipList () {
     return (
       this.props.clips.map((clip, idx) => {
+        const backgroundClip = {
+          backgroundImage: `url('${clip.thumbnails.small}')`
+        }
         return(
           <li className="clip" key={idx}>
-            <div className="clip-title">
-              {clip.slug}
+            <div className="hover-graphic">
+              <div className="clip-title">
+                {clip.title}
+              </div>
             </div>
-            <img
-              className="clip-thumbnail"
-              src={clip.thumbnails.tiny}/>
+              <div
+                className='clip-list-img'
+                style={backgroundClip}></div>
           </li>
         )
       })
@@ -29,14 +34,12 @@ class ClipList extends React.Component {
   render () {
     return(
       <div className="clips-list-container">
-        <div className="right-button">
+        <div className="clips-genre">
+        
         </div>
         <ul className="clip-list">
           {this.clipList()}
         </ul>
-
-        <div className="left-button">
-        </div>
       </div>
     )
   };

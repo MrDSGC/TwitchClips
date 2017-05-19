@@ -34,7 +34,8 @@ body {
 
 .game-nav {
   background-color: #6441a4;
-  width: 20%;
+  float: left;
+  width: 21%;
 }
 
 .nav-bar {
@@ -72,7 +73,14 @@ body {
 }
 
 .watch-window {
-  width: 80%;
+  float: right;
+  width: 79%;
+}
+
+.clip-list-section {
+  position: relative;
+  bottom: 0;
+  flex: 1;
 }
 
 .clip-list-container {
@@ -84,4 +92,47 @@ body {
   display:flex;
   flex-direction: row;
   overflow: scroll;
+}
+
+.clip {
+  position: relative;
+}
+
+.clip-title {
+  position: absolute;
+  color: white;
+  visibility: hidden;
+}
+
+.clip-list-img {
+  width: 260px;
+  height: 147px;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+
+}
+.hover-graphic {
+  width:260px;
+  height:147px;
+  background-color: rgba(0,0,0,0);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover-graphic:hover > .clip-title {
+  width:260px;
+  height:147px;
+  background-color: rgba(0,0,0, .35);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+}
+
+.clip-view-section {
+  flex: 9;
 }
