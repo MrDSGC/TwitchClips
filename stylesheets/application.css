@@ -2,6 +2,7 @@ body, div, section, p, a, ul, li {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -82,6 +83,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: grey;
 
 }
 .clip-list-section {
@@ -177,6 +179,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 30px;
 }
 
 .footer-list {
@@ -188,11 +191,31 @@ body {
 }
 .f-label {
   color: white;
-  margin-left: 10px;
   font-family: 'Montserrat', sans-serif;
 }
 
 .f-list-item {
   font-size: 25px;
-  color: black;
+  margin-right:10px;
+}
+
+.f-list-item:last-of-type {
+  margin-right: 0;
+}
+
+.f-list-item:hover {
+  border-bottom: 1px solid white;
+}
+
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 20px;
+  border-radius: 2px;
+}
+
+.welcome-items {
+  padding: 10px;
 }

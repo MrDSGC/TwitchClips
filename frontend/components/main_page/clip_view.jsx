@@ -8,8 +8,16 @@ class ClipView extends React.Component {
   viewOutput() {
     if(this.props.clip === '') {
       return(
-        <div>
-          {this.props.genre}
+        <div className="welcome-page">
+          <div className="welcome-items">
+            Welcome to Twitch Klips!
+          </div>
+          <div className="welcome-items">
+            Select Clips from any of the default games
+          </div>
+          <div className="welcome-items">
+            Search option coming soon
+          </div>
         </div>
       )
     } else {
