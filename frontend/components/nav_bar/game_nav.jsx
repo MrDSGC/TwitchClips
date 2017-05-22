@@ -8,6 +8,10 @@ const GameNav = () => (
     <ul className= "game-list">
       <li className="game-item">
         <img src=''/>
+        <div >Trending</div>
+      </li>
+      <li className="game-item">
+        <img src=''/>
         <div >Dota 2</div>
       </li>
       <li className="game-item">

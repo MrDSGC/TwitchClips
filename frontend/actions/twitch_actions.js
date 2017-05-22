@@ -1,10 +1,16 @@
 import * as APIUtil from '../util/twitch_api_util';
 
+export const RECEIVE_GENRE = 'RECEIVE_GENRE';
 export const RECEIVE_CLIPS = 'RECEIVE_CLIPS';  //this does not work
 
 export const receiveClips = clips => ({
   type: RECEIVE_CLIPS,
   clips
+});
+
+export const receiveGenre = genre =< ({
+  type: RECEIVE_GENRE,
+  genre
 });
 
 export const fetchGameClips = game => dispatch => (
