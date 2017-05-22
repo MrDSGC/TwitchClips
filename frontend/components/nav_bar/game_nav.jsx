@@ -25,26 +25,31 @@ class GameNav extends React.Component {
           <div >Trending</div>
         </li>
         <li className="game-item"
-            onClick={this.handleGenreChange('Dota2')}>
+            onClick={this.handleGenreChange('Dota 2')}>
           <div >Dota 2</div>
         </li>
         <li className="game-item"
-            onClick={this.handleGenreChange('CSGO')}>
+            onClick={this.handleGenreChange('Counter-Strike: Global Offensive')}>
           <div>CS:GO</div>
         </li>
         <li className="game-item"
-            onClick={this.handleGenreChange('HeartStone')}>
+            onClick={this.handleGenreChange('Hearthstone')}>
           <div>HeartStone</div>
         </li>
         <li className="game-item"
-            onClick={this.handleGenreChange('Starcraft 2')}>
+            onClick={this.handleGenreChange('StarCraft II')}>
           <div>Starcraft 2</div>
         </li>
         <li className="game-item"
-            onClick={this.handleGenreChange('Leauge of Legends')}>
+            onClick={this.handleGenreChange('League of Legends')}>
           <div>Leauge of Legends</div>
         </li>
       </ul>
+      <div>
+        portfolio
+        github
+        linkedin
+      </div>
     </div>
     )
   };

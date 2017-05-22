@@ -78,8 +78,10 @@ body {
 }
 
 .window {
-  height: 100%;
+  height: calc(100% - 147px);
   display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 .clip-list-section {
@@ -153,4 +155,16 @@ body {
   cursor: pointer;
   border-left: solid 1px white;
   border-right: solid 1px white;
+}
+
+.clip-view-section {
+  width: calc(100% - 268.8px);
+
+}
+.clip-view-window {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

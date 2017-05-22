@@ -1,24 +1,18 @@
 import { connect } from 'react-redux';
-import { fetchGameClips,
-         fetchTrendingClips,
-         fetchChannelClips
+import { fetchClip
        } from '../../actions/twitch_actions';
 
 import ClipView from './clip_view';
 
 const mapStateToProps = state => {
   return ({
-    clip: state.clip
+    clip: state.clip,
+    genre: state.genre
   })
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchClip: slug => dispatch(fetchClip(slug)),
-  };
-};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(ClipView);

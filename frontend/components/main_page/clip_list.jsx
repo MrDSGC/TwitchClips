@@ -9,6 +9,19 @@ class ClipList extends React.Component {
     this.props.fetchTrendingClips();
   }
 
+  fetchClip(url) {
+    return () => this.props.receiveClip(url);
+  }
+  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props) {
+      if(this.props.genre === 'Trending') {
+        this.props.fetchTrendingClips();
+      } else {
+        this.props.fetchGameClips(this.props.genre);
+      }
+    }
+  }
+
   clipList () {
     return (
       this.props.clips.map((clip, idx) => {
@@ -16,7 +29,9 @@ class ClipList extends React.Component {
           backgroundImage: `url('${clip.thumbnails.small}')`
         }
         return(
-          <li className="clip" key={idx}>
+          <li className="clip"
+              key={idx}
+              onClick={this.fetchClip(clip.embed_url)}>
             <div className="hover-graphic">
               <div className="clip-title">
                 {clip.title}
@@ -35,7 +50,7 @@ class ClipList extends React.Component {
     return(
       <div className="clips-list-container">
         <div className="clips-genre">
-          Trending
+          {this.props.genre}
         </div>
         <ul className="clip-list">
           {this.clipList()}
