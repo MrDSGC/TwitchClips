@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import RECEIVE_GENRE from '../actions/twitch_actions'
 
 
-const initialState =  {};
+const initialState = "Trending";
 
 const GenreReducer = (state = initialState, action) => {
   Object.freeze(state)

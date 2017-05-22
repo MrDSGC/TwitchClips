@@ -1,36 +1,54 @@
 import React from 'react';
 
-const GameNav = () => (
-  <div className="nav-bar">
-    <div className='game-title'>
-      Twitch Klips
+class GameNav extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleGenreChange = this.handleGenreChange.bind(this);
+  }
+
+  handleGenreChange(genre) {
+    return () => this.props.receiveGenre(genre)
+  }
+
+  // <li className="game-item">
+  //   <div>Add a Game or Channel</div>
+  // </li>
+  render () {
+    return(
+    <div className="nav-bar">
+      <div className='game-title'>
+        Twitch Klips
+      </div>
+      <ul className= "game-list">
+        <li className="game-item"
+            onClick={this.handleGenreChange('Trending')}>
+          <div >Trending</div>
+        </li>
+        <li className="game-item"
+            onClick={this.handleGenreChange('Dota2')}>
+          <div >Dota 2</div>
+        </li>
+        <li className="game-item"
+            onClick={this.handleGenreChange('CSGO')}>
+          <div>CS:GO</div>
+        </li>
+        <li className="game-item"
+            onClick={this.handleGenreChange('HeartStone')}>
+          <div>HeartStone</div>
+        </li>
+        <li className="game-item"
+            onClick={this.handleGenreChange('Starcraft 2')}>
+          <div>Starcraft 2</div>
+        </li>
+        <li className="game-item"
+            onClick={this.handleGenreChange('Leauge of Legends')}>
+          <div>Leauge of Legends</div>
+        </li>
+      </ul>
     </div>
-    <ul className= "game-list">
-      <li className="game-item">
-        <img src=''/>
-        <div >Trending</div>
-      </li>
-      <li className="game-item">
-        <img src=''/>
-        <div >Dota 2</div>
-      </li>
-      <li className="game-item">
-        <div>CS:GO</div>
-      </li>
-      <li className="game-item">
-        <div>HeartStone</div>
-      </li>
-      <li className="game-item">
-        <div>Starcraft 2</div>
-      </li>
-      <li className="game-item">
-        <div>Leauge of Legends</div>
-      </li>
-      <li className="game-item">
-        <div>Add a Game or Channel</div>
-      </li>
-    </ul>
-  </div>
-)
+    )
+  };
+
+}
 
 export default GameNav;

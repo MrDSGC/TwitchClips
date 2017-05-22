@@ -146,5 +146,11 @@ body {
   z-index: 1;
   border: 1px white solid;
   bottom: 0;
-  
+
+}
+
+.game-item:hover {
+  cursor: pointer;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
 }

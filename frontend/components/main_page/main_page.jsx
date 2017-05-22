@@ -1,5 +1,5 @@
 import React from 'react';
-import GameNav from '../nav_bar/game_nav';
+import GameNavContainer from '../nav_bar/game_nav_container';
 import WatchWindow from './watch_window';
 
 class MainPage extends React.Component {
@@ -11,7 +11,7 @@ class MainPage extends React.Component {
     return(
       <div className='full-page'>
         <nav className='game-nav'>
-          <GameNav />
+          <GameNavContainer />
         </nav>
         <div className='watch-window'>
           <WatchWindow />

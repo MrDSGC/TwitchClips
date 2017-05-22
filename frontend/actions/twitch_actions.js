@@ -8,7 +8,7 @@ export const receiveClips = clips => ({
   clips
 });
 
-export const receiveGenre = genre =< ({
+export const receiveGenre = genre => ({
   type: RECEIVE_GENRE,
   genre
 });

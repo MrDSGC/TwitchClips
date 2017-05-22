@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    ReceiveGenre: genre => dispatch(ReceiveGenre(genre))
+    receiveGenre: genre => dispatch(receiveGenre(genre))
   };
 };
 
