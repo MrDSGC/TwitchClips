@@ -1,9 +1,9 @@
-const path = require('path')
+var path = require('path');
 
 module.exports = {
   entry: "./frontend/twitch_watch.jsx",
   output: {
-    filename: "bundle.js"
+    filename: "./bundle.js"
   },
   module: {
     loaders: [
