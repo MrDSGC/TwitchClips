@@ -25,8 +25,8 @@ class GameNav extends React.Component {
           <li className="game-item"
             onClick={this.handleGenreChange(game.game.name)}
             key={idx}>
-            <img src={game.game.box.small}></img>
-            <div>
+            <img className="logo" src={game.game.box.small}></img>
+            <div className="game-item-title">
               {game.game.name}
             </div>
           </li>
@@ -36,15 +36,40 @@ class GameNav extends React.Component {
   }
 
   channelsList() {
-
+    return (
+      this.props.channels.map( (channel, idx) => {
+        return(
+          <li className="game-item"
+            onClick={this.handleGenreChange(game.game.name)}
+            key={idx}>
+            <img className="logo" src={game.game.box.small}></img>
+            <div className="game-item-title">
+              {game.game.name}
+            </div>
+          </li>
+        )
+      })
+    )
   }
 
+  // <div className="channel-search-bar">
+  //
+  // </div>
+  //
+  // <ul className="channel-list">
+  //   {this.channelsList()}
+  // </ul>
   render () {
     return(
     <div className="nav-bar">
       <div className='game-title'>
         Twitch Klips
       </div>
+
+      <div classNAme="game-search-bar">
+
+      </div>
+
       <ul className= "game-list">
         <li className="game-item"
             onClick={this.handleGenreChange('Trending')}
@@ -52,13 +77,11 @@ class GameNav extends React.Component {
           <div className="trending">
             <i className="fa fa-twitch" aria-hidden="true"></i>
           </div>
-          <div >Trending</div>
+          <div className="game-item-title">Trending</div>
         </li>
         {this.gamesList()}
       </ul>
-      <div>
 
-      </div>
       <div className="footer">
         <ul className="footer-list">
           <li className="f-list-item">

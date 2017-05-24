@@ -16995,10 +16995,10 @@ var GameNav = function (_React$Component) {
           { className: 'game-item',
             onClick: _this3.handleGenreChange(game.game.name),
             key: idx },
-          _react2.default.createElement('img', { src: game.game.box.small }),
+          _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'game-item-title' },
             game.game.name
           )
         );
@@ -17006,7 +17006,33 @@ var GameNav = function (_React$Component) {
     }
   }, {
     key: 'channelsList',
-    value: function channelsList() {}
+    value: function channelsList() {
+      var _this4 = this;
+
+      return this.props.channels.map(function (channel, idx) {
+        return _react2.default.createElement(
+          'li',
+          { className: 'game-item',
+            onClick: _this4.handleGenreChange(game.game.name),
+            key: idx },
+          _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
+          _react2.default.createElement(
+            'div',
+            { className: 'game-item-title' },
+            game.game.name
+          )
+        );
+      });
+    }
+
+    // <div className="channel-search-bar">
+    //
+    // </div>
+    //
+    // <ul className="channel-list">
+    //   {this.channelsList()}
+    // </ul>
+
   }, {
     key: 'render',
     value: function render() {
@@ -17018,6 +17044,7 @@ var GameNav = function (_React$Component) {
           { className: 'game-title' },
           'Twitch Klips'
         ),
+        _react2.default.createElement('div', { classNAme: 'game-search-bar' }),
         _react2.default.createElement(
           'ul',
           { className: 'game-list' },
@@ -17033,13 +17060,12 @@ var GameNav = function (_React$Component) {
             ),
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'game-item-title' },
               'Trending'
             )
           ),
           this.gamesList()
         ),
-        _react2.default.createElement('div', null),
         _react2.default.createElement(
           'div',
           { className: 'footer' },

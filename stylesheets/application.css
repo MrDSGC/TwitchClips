@@ -40,47 +40,58 @@ body {
 }
 
 .trending {
-  background-color: #815fc0;
-  width: 52px;
-  height: 72px;
+  background-color: white;
+  width: 28.8px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0px;
 }
 
+.fa-twitch {
+  color: #6441a4;
+}
+
 .nav-bar {
+  height: 95%;
   margin: 10px;
 }
 
 .game-title {
-  font-family: 'twitchy.tv';
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: white;
-  font-size: 30px;
-  color: #6441a4;
+  font-family: "dimitri";
+  font-size: 25px;
+  color: white;
+  margin-left: 46px;
+
 }
 
 
 .game-list {
+  height: calc(100% - 60%);
+  overflow: scroll;
   color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  border-top: white 1px solid;
+  border-bottom: white 1px solid;
+}
+
+.game-item-title {
+  margin-left: 10px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
 }
 
 .game-item {
   padding: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  border-top: 1px solid white;
-}
-.game-item:last-of-type {
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid white;
+  align-items: center;
 }
 
 .watch-window {
@@ -205,7 +216,7 @@ body {
 }
 
 .f-list-item {
-  font-size: 25px;
+  font-size: 12px;
   margin-right:10px;
 }
 
