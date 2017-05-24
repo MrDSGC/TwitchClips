@@ -6,15 +6,39 @@ class GameNav extends React.Component {
   constructor(props) {
     super(props)
     this.handleGenreChange = this.handleGenreChange.bind(this);
+    this.gamesList = this.gamesList.bind(this)
+    this.channelsList = this.channelsList.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.fetchTopGames();
   }
 
   handleGenreChange(genre) {
     return () => this.props.receiveGenre(genre)
   }
 
-  // <li className="game-item">
-  //   <div>Add a Game or Channel</div>
-  // </li>
+  gamesList() {
+    return (
+      this.props.games.map( (game, idx) => {
+        return(
+          <li className="game-item"
+            onClick={this.handleGenreChange(game.game.name)}
+            key={idx}>
+            <img src={game.game.box.small}></img>
+            <div>
+              {game.game.name}
+            </div>
+          </li>
+        )
+      })
+    )
+  }
+
+  channelsList() {
+
+  }
+
   render () {
     return(
     <div className="nav-bar">
@@ -23,29 +47,12 @@ class GameNav extends React.Component {
       </div>
       <ul className= "game-list">
         <li className="game-item"
-            onClick={this.handleGenreChange('Trending')}>
+            onClick={this.handleGenreChange('Trending')}
+            key={26}>
+          <i class="fa fa-twitch" aria-hidden="true"></i>
           <div >Trending</div>
         </li>
-        <li className="game-item"
-            onClick={this.handleGenreChange('Dota 2')}>
-          <div >Dota 2</div>
-        </li>
-        <li className="game-item"
-            onClick={this.handleGenreChange('Counter-Strike: Global Offensive')}>
-          <div>CS:GO</div>
-        </li>
-        <li className="game-item"
-            onClick={this.handleGenreChange('Hearthstone')}>
-          <div>HeartStone</div>
-        </li>
-        <li className="game-item"
-            onClick={this.handleGenreChange('StarCraft II')}>
-          <div>Starcraft 2</div>
-        </li>
-        <li className="game-item"
-            onClick={this.handleGenreChange('League of Legends')}>
-          <div>Leauge of Legends</div>
-        </li>
+        {this.gamesList()}
       </ul>
       <div>
 

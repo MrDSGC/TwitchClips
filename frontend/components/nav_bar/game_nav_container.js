@@ -1,17 +1,25 @@
 import { connect } from 'react-redux';
-import { receiveGenre
+import { receiveGenre,
+         fetchChannels,
+         fetchGames,
+         fetchTopGames
        } from '../../actions/twitch_actions';
 
 import GameNav from './game_nav';
 
 const mapStateToProps = state => {
   return ({
+    games: state.games,
+    channels: state.channels
   })
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    receiveGenre: genre => dispatch(receiveGenre(genre))
+    receiveGenre: genre => dispatch(receiveGenre(genre)),
+    fetchTopGames: () => dispatch(fetchTopGames()),
+    fetchGames: (query) => dispatch(fetchGames(query)),
+    fetchChannels: (query) => dispatch(fetchChannels(query)),
   };
 };
 

@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchTrendingClips: () => dispatch(fetchTrendingClips()),
     fetchChannelClips: channel => dispatch(fetchChannelClips(channel)),
     receiveClip: (url) => dispatch(receiveClip(url))
-
   };
 };
 

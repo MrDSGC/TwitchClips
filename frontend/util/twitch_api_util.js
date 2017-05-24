@@ -37,7 +37,9 @@ export const queryGame = (search) => {
       'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
       'Accept': 'application/vnd.twitchtv.v5+json'
     },
-    data: { query: search }
+    data: { query: search,
+            limit: 50
+          }
   })
 }
 
@@ -50,7 +52,22 @@ export const queryChannel = (search) => {
       'Accept': 'application/vnd.twitchtv.v5+json'
     },
     data: { query: search,
-            limit: 1}
+            limit: 50
+          }
+  })
+}
+
+export const topGames = () => {
+  return $.ajax({
+    method:"GET",
+    url:'https://api.twitch.tv/kraken/games/top',
+    headers: {
+      'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    },
+    data: {
+            limit: 25
+          }
   })
 }
 

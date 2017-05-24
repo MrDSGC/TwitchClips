@@ -3248,7 +3248,7 @@ module.exports = SyntheticEvent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE = undefined;
+exports.fetchTopGames = exports.fetchGames = exports.fetchChannels = exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGames = exports.receiveChannels = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_GAMES = exports.RECEIVE_CHANNELS = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE = undefined;
 
 var _twitch_api_util = __webpack_require__(96);
 
@@ -3256,9 +3256,11 @@ var APIUtil = _interopRequireWildcard(_twitch_api_util);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var RECEIVE_GENRE = exports.RECEIVE_GENRE = 'RECEIVE_GENRE';
+var RECEIVE_GENRE = exports.RECEIVE_GENRE = 'RECEIVE_GENRE'; //this does not work
 var RECEIVE_CLIPS = exports.RECEIVE_CLIPS = 'RECEIVE_CLIPS'; //this does not work
 var RECEIVE_CLIP = exports.RECEIVE_CLIP = 'RECEIVE_CLIP'; //this does not work
+var RECEIVE_CHANNELS = exports.RECEIVE_CHANNELS = 'RECEIVE_CHANNELS'; //this does not work
+var RECEIVE_GAMES = exports.RECEIVE_GAMES = 'RECEIVE_GAMES'; //this does not work
 
 var receiveClips = exports.receiveClips = function receiveClips(clips) {
   return {
@@ -3266,6 +3268,7 @@ var receiveClips = exports.receiveClips = function receiveClips(clips) {
     clips: clips
   };
 };
+
 var receiveClip = exports.receiveClip = function receiveClip(clip) {
   return {
     type: RECEIVE_CLIP,
@@ -3277,6 +3280,20 @@ var receiveGenre = exports.receiveGenre = function receiveGenre(genre) {
   return {
     type: RECEIVE_GENRE,
     genre: genre
+  };
+};
+
+var receiveChannels = exports.receiveChannels = function receiveChannels(channels) {
+  return {
+    type: RECEIVE_CHANNELS,
+    channels: channels
+  };
+};
+
+var receiveGames = exports.receiveGames = function receiveGames(games) {
+  return {
+    type: RECEIVE_GAMES,
+    games: games
   };
 };
 
@@ -3300,6 +3317,30 @@ var fetchChannelClips = exports.fetchChannelClips = function fetchChannelClips(c
   return function (dispatch) {
     return APIUtil.getChannelClip(channel).then(function (clips) {
       return dispatch(receiveClips(clips));
+    });
+  };
+};
+
+var fetchChannels = exports.fetchChannels = function fetchChannels(query) {
+  return function (dispatch) {
+    return APIUtil.queryChannel(query).then(function (channels) {
+      return dispatch(receiveChannels(channels));
+    });
+  };
+};
+
+var fetchGames = exports.fetchGames = function fetchGames(query) {
+  return function (dispatch) {
+    return APIUtil.queryGame(query).then(function (games) {
+      return dispatch(receiveGames(games));
+    });
+  };
+};
+
+var fetchTopGames = exports.fetchTopGames = function fetchTopGames() {
+  return function (dispatch) {
+    return APIUtil.topGames().then(function (games) {
+      return dispatch(receiveGames(games));
     });
   };
 };
@@ -9153,7 +9194,9 @@ var queryGame = exports.queryGame = function queryGame(search) {
       'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
       'Accept': 'application/vnd.twitchtv.v5+json'
     },
-    data: { query: search }
+    data: { query: search,
+      limit: 50
+    }
   });
 };
 
@@ -9166,7 +9209,22 @@ var queryChannel = exports.queryChannel = function queryChannel(search) {
       'Accept': 'application/vnd.twitchtv.v5+json'
     },
     data: { query: search,
-      limit: 1 }
+      limit: 50
+    }
+  });
+};
+
+var topGames = exports.topGames = function topGames() {
+  return $.ajax({
+    method: "GET",
+    url: 'https://api.twitch.tv/kraken/games/top',
+    headers: {
+      'Client-ID': 'n39nvsdj2kfqihsrucbbaayrqtayjy',
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    },
+    data: {
+      limit: 25
+    }
   });
 };
 
@@ -16753,7 +16811,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     receiveClip: function receiveClip(url) {
       return dispatch((0, _twitch_actions.receiveClip)(url));
     }
-
   };
 };
 
@@ -16908,10 +16965,17 @@ var GameNav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (GameNav.__proto__ || Object.getPrototypeOf(GameNav)).call(this, props));
 
     _this.handleGenreChange = _this.handleGenreChange.bind(_this);
+    _this.gamesList = _this.gamesList.bind(_this);
+    _this.channelsList = _this.channelsList.bind(_this);
     return _this;
   }
 
   _createClass(GameNav, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchTopGames();
+    }
+  }, {
     key: 'handleGenreChange',
     value: function handleGenreChange(genre) {
       var _this2 = this;
@@ -16920,11 +16984,29 @@ var GameNav = function (_React$Component) {
         return _this2.props.receiveGenre(genre);
       };
     }
+  }, {
+    key: 'gamesList',
+    value: function gamesList() {
+      var _this3 = this;
 
-    // <li className="game-item">
-    //   <div>Add a Game or Channel</div>
-    // </li>
-
+      return this.props.games.map(function (game, idx) {
+        return _react2.default.createElement(
+          'li',
+          { className: 'game-item',
+            onClick: _this3.handleGenreChange(game.game.name),
+            key: idx },
+          _react2.default.createElement('img', { src: game.game.box.small }),
+          _react2.default.createElement(
+            'div',
+            null,
+            game.game.name
+          )
+        );
+      });
+    }
+  }, {
+    key: 'channelsList',
+    value: function channelsList() {}
   }, {
     key: 'render',
     value: function render() {
@@ -16942,63 +17024,16 @@ var GameNav = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { className: 'game-item',
-              onClick: this.handleGenreChange('Trending') },
+              onClick: this.handleGenreChange('Trending'),
+              key: 26 },
+            _react2.default.createElement('i', { 'class': 'fa fa-twitch', 'aria-hidden': 'true' }),
             _react2.default.createElement(
               'div',
               null,
               'Trending'
             )
           ),
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('Dota 2') },
-            _react2.default.createElement(
-              'div',
-              null,
-              'Dota 2'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('Counter-Strike: Global Offensive') },
-            _react2.default.createElement(
-              'div',
-              null,
-              'CS:GO'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('Hearthstone') },
-            _react2.default.createElement(
-              'div',
-              null,
-              'HeartStone'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('StarCraft II') },
-            _react2.default.createElement(
-              'div',
-              null,
-              'Starcraft 2'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('League of Legends') },
-            _react2.default.createElement(
-              'div',
-              null,
-              'Leauge of Legends'
-            )
-          )
+          this.gamesList()
         ),
         _react2.default.createElement('div', null),
         _react2.default.createElement(
@@ -17079,13 +17114,25 @@ var _game_nav2 = _interopRequireDefault(_game_nav);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {};
+  return {
+    games: state.games,
+    channels: state.channels
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     receiveGenre: function receiveGenre(genre) {
       return dispatch((0, _twitch_actions.receiveGenre)(genre));
+    },
+    fetchTopGames: function fetchTopGames() {
+      return dispatch((0, _twitch_actions.fetchTopGames)());
+    },
+    fetchGames: function fetchGames(query) {
+      return dispatch((0, _twitch_actions.fetchGames)(query));
+    },
+    fetchChannels: function fetchChannels(query) {
+      return dispatch((0, _twitch_actions.fetchChannels)(query));
     }
   };
 };
@@ -17234,12 +17281,22 @@ var _genre_reducer = __webpack_require__(184);
 
 var _genre_reducer2 = _interopRequireDefault(_genre_reducer);
 
+var _games_reducer = __webpack_require__(392);
+
+var _games_reducer2 = _interopRequireDefault(_games_reducer);
+
+var _channels_reducer = __webpack_require__(391);
+
+var _channels_reducer2 = _interopRequireDefault(_channels_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   clips: _clips_reducer2.default,
   genre: _genre_reducer2.default,
-  clip: _clip_reducer2.default
+  clip: _clip_reducer2.default,
+  games: _games_reducer2.default,
+  channels: _channels_reducer2.default
 });
 
 /***/ }),
@@ -34272,6 +34329,84 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _merge = __webpack_require__(67);
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _twitch_actions = __webpack_require__(25);
+
+var _twitch_actions2 = _interopRequireDefault(_twitch_actions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = [];
+
+var ChannelsReducer = function ChannelsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = (0, _merge2.default)({}, state);
+  switch (action.type) {
+    case 'RECEIVE_CHANNELS':
+      return action.channels;
+    default:
+      return state;
+  }
+};
+
+exports.default = ChannelsReducer;
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _merge = __webpack_require__(67);
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _twitch_actions = __webpack_require__(25);
+
+var _twitch_actions2 = _interopRequireDefault(_twitch_actions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = [];
+
+var GamesReducer = function GamesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = (0, _merge2.default)({}, state);
+  switch (action.type) {
+    case 'RECEIVE_GAMES':
+      return action.games.top;
+    default:
+      return state;
+  }
+};
+
+exports.default = GamesReducer;
 
 /***/ })
 /******/ ]);
