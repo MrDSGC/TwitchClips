@@ -36,7 +36,17 @@ body {
 .game-nav {
   background-color: #6441a4;
   float: left;
-  width: 21%;
+  width: 268.8px;
+}
+
+.trending {
+  background-color: #815fc0;
+  width: 52px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
 }
 
 .nav-bar {

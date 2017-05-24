@@ -17026,7 +17026,11 @@ var GameNav = function (_React$Component) {
             { className: 'game-item',
               onClick: this.handleGenreChange('Trending'),
               key: 26 },
-            _react2.default.createElement('i', { 'class': 'fa fa-twitch', 'aria-hidden': 'true' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'trending' },
+              _react2.default.createElement('i', { className: 'fa fa-twitch', 'aria-hidden': 'true' })
+            ),
             _react2.default.createElement(
               'div',
               null,

@@ -49,7 +49,9 @@ class GameNav extends React.Component {
         <li className="game-item"
             onClick={this.handleGenreChange('Trending')}
             key={26}>
-          <i class="fa fa-twitch" aria-hidden="true"></i>
+          <div className="trending">
+            <i className="fa fa-twitch" aria-hidden="true"></i>
+          </div>
           <div >Trending</div>
         </li>
         {this.gamesList()}
