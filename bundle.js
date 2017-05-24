@@ -16597,6 +16597,7 @@ var ClipList = function (_React$Component) {
           this.props.fetchTrendingClips();
         } else {
           this.props.fetchGameClips(this.props.genre);
+          // this.props.fetchChannelClips(this.props.genre)
         }
       }
     }
