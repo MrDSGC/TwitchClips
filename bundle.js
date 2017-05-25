@@ -16951,6 +16951,8 @@ var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -16965,9 +16967,13 @@ var GameNav = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (GameNav.__proto__ || Object.getPrototypeOf(GameNav)).call(this, props));
 
+    _this.state = { game: "", channel: "" };
     _this.handleGenreChange = _this.handleGenreChange.bind(_this);
     _this.gamesList = _this.gamesList.bind(_this);
     _this.channelsList = _this.channelsList.bind(_this);
+    _this.update = _this.update.bind(_this);
+    _this.handleGameSubmit = _this.handleGameSubmit.bind(_this);
+    _this.handleChannelSubmit = _this.handleChannelSubmit.bind(_this);
     return _this;
   }
 
@@ -17025,6 +17031,58 @@ var GameNav = function (_React$Component) {
         );
       });
     }
+  }, {
+    key: 'handleGameSubmit',
+    value: function handleGameSubmit(e) {
+      e.preventDefault();
+      var gameQuery = this.state.game;
+      this.props.fetchGames(gameQuery);
+    }
+  }, {
+    key: 'handleChannelSubmit',
+    value: function handleChannelSubmit(e) {
+      e.preventDefault();
+      var channelQuery = this.state.channel;
+      this.props.fetchChannels(channelQuery);
+    }
+  }, {
+    key: 'update',
+    value: function update(field) {
+      var _this5 = this;
+
+      return function (e) {
+        return _this5.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+      console.log(this.state);
+    }
+  }, {
+    key: 'gameSearchBar',
+    value: function gameSearchBar() {
+      return _react2.default.createElement(
+        'form',
+        { className: 'game-form',
+          onSubmit: this.handleGameSubmit },
+        _react2.default.createElement('input', { type: 'text',
+          className: 'inputs',
+          value: this.state.game,
+          placeholder: 'Search Games',
+          onChange: this.update("game") })
+      );
+    }
+  }, {
+    key: 'channelSearchBar',
+    value: function channelSearchBar() {
+      _react2.default.createElement(
+        'form',
+        { className: 'channel-form',
+          onSubmit: this.handleChannelSubmit },
+        _react2.default.createElement('input', { type: 'text',
+          className: 'inputs',
+          value: this.state.channel,
+          placeholder: 'Search Channels',
+          onChange: this.update("channel") })
+      );
+    }
 
     // <div className="channel-search-bar">
     //
@@ -17045,7 +17103,11 @@ var GameNav = function (_React$Component) {
           { className: 'game-title' },
           'Twitch Klips'
         ),
-        _react2.default.createElement('div', { classNAme: 'game-search-bar' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'game-search-bar' },
+          this.gameSearchBar()
+        ),
         _react2.default.createElement(
           'ul',
           { className: 'game-list' },

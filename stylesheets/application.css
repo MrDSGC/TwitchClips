@@ -39,6 +39,11 @@ body {
   width: 268.8px;
 }
 
+.inputs {
+  width: 100%;
+
+}
+
 .trending {
   background-color: white;
   width: 28.8px;
@@ -77,7 +82,13 @@ body {
   border-top: white 1px solid;
   border-bottom: white 1px solid;
 }
+.game-search-bar {
+  margin-top: 10px;
+}
 
+.game-form {
+  margin-right: 5px;
+}
 .game-item-title {
   margin-left: 10px;
 }
@@ -110,7 +121,8 @@ body {
 .clip-list-section {
   position: fixed;
   bottom: 0;
-  width: calc(100% - 268.8px);
+  right: 0;
+  width: calc(100% - 268px);
 }
 
 .clip-list-container {

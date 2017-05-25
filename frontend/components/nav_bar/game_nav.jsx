@@ -5,14 +5,20 @@ import FontAwesome from 'react-fontawesome';
 class GameNav extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = { game: "", channel: ""}
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.gamesList = this.gamesList.bind(this)
     this.channelsList = this.channelsList.bind(this)
+    this.update = this.update.bind(this)
+    this.handleGameSubmit = this.handleGameSubmit.bind(this)
+    this.handleChannelSubmit = this.handleChannelSubmit.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchTopGames();
   }
+
 
   handleGenreChange(genre) {
     return () => this.props.receiveGenre(genre)
@@ -52,6 +58,49 @@ class GameNav extends React.Component {
     )
   }
 
+  handleGameSubmit(e) {
+		e.preventDefault();
+		const gameQuery = this.state.game;
+		this.props.fetchGames(gameQuery);
+	}
+
+  handleChannelSubmit(e) {
+		e.preventDefault();
+		const channelQuery = this.state.channel;
+		this.props.fetchChannels(channelQuery);
+	}
+
+  update(field) {
+    return e => this.setState({
+      [field]: e.currentTarget.value
+    });
+    console.log(this.state);
+  }
+
+  gameSearchBar() {
+    return(
+      <form className="game-form"
+        onSubmit={this.handleGameSubmit}>
+        <input type="text"
+          className="inputs"
+          value={this.state.game}
+          placeholder="Search Games"
+          onChange={this.update("game")}/>
+      </form>
+    )
+  }
+
+  channelSearchBar() {
+    <form className="channel-form"
+          onSubmit={this.handleChannelSubmit}>
+      <input type="text"
+        className="inputs"
+        value={this.state.channel}
+        placeholder="Search Channels"
+        onChange={this.update("channel")}/>
+    </form>
+  }
+
   // <div className="channel-search-bar">
   //
   // </div>
@@ -66,8 +115,8 @@ class GameNav extends React.Component {
         Twitch Klips
       </div>
 
-      <div classNAme="game-search-bar">
-
+      <div className="game-search-bar">
+        {this.gameSearchBar()}
       </div>
 
       <ul className= "game-list">
