@@ -17069,24 +17069,40 @@ var GameNav = function (_React$Component) {
           this.games()
         );
       } else {
-        return _react2.default.createElement(
-          'ul',
-          { className: 'game-list' },
-          this.props.games.map(function (game, idx) {
-            return _react2.default.createElement(
-              'li',
-              { className: 'game-item',
-                onClick: _this5.handleGameGenreChange(game.name),
-                key: idx },
-              _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
+        if (this.props.games === null) {
+          return _react2.default.createElement(
+            'ul',
+            { className: 'game-list' },
+            _react2.default.createElement(
+              'div',
+              { className: 'no-channels-message' },
               _react2.default.createElement(
                 'div',
-                { className: 'game-item-title' },
-                game.name
+                null,
+                'Game Not Found!'
               )
-            );
-          })
-        );
+            )
+          );
+        } else {
+          return _react2.default.createElement(
+            'ul',
+            { className: 'game-list' },
+            this.props.games.map(function (game, idx) {
+              return _react2.default.createElement(
+                'li',
+                { className: 'game-item',
+                  onClick: _this5.handleGameGenreChange(game.name),
+                  key: idx },
+                _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'game-item-title' },
+                  game.name
+                )
+              );
+            })
+          );
+        }
       }
     }
   }, {
@@ -17094,20 +17110,32 @@ var GameNav = function (_React$Component) {
     value: function channelsList() {
       var _this6 = this;
 
-      return this.props.channels.map(function (channel, idx) {
+      if (this.props.channels.length === 0) {
         return _react2.default.createElement(
-          'li',
-          { className: 'game-item',
-            onClick: _this6.handleChannelGenreChange(channel.name),
-            key: idx },
-          _react2.default.createElement('img', { className: 'logo', src: channel.logo }),
+          'div',
+          { className: 'no-channels-message' },
           _react2.default.createElement(
             'div',
-            { className: 'game-item-title' },
-            channel.name
+            null,
+            'Find Channels Here!'
           )
         );
-      });
+      } else {
+        return this.props.channels.map(function (channel, idx) {
+          return _react2.default.createElement(
+            'li',
+            { className: 'game-item',
+              onClick: _this6.handleChannelGenreChange(channel.name),
+              key: idx },
+            _react2.default.createElement('img', { className: 'logo', src: channel.logo }),
+            _react2.default.createElement(
+              'div',
+              { className: 'game-item-title' },
+              channel.name
+            )
+          );
+        });
+      }
     }
   }, {
     key: 'handleGameSubmit',
@@ -17175,14 +17203,24 @@ var GameNav = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'game-search-bar' },
-          this.gameSearchBar()
+          { className: 'search-bar' },
+          this.gameSearchBar(),
+          _react2.default.createElement(
+            'div',
+            { className: 'mag' },
+            _react2.default.createElement('i', { className: 'fa fa-search', 'aria-hidden': 'true' })
+          )
         ),
         this.gamesList(),
         _react2.default.createElement(
           'div',
-          { className: 'channel-search-bar' },
-          this.channelSearchBar()
+          { className: 'search-bar' },
+          this.channelSearchBar(),
+          _react2.default.createElement(
+            'div',
+            { className: 'mag' },
+            _react2.default.createElement('i', { className: 'fa fa-search', 'aria-hidden': 'true' })
+          )
         ),
         _react2.default.createElement(
           'ul',

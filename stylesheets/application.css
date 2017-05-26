@@ -40,8 +40,11 @@ body {
 }
 
 .inputs {
-  width: 100%;
-
+  width: 222px;
+  background-color: mediumpurple;
+  border: none;
+  padding: 4px;
+  color: white;
 }
 
 .trending {
@@ -78,19 +81,44 @@ body {
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-
   border-top: white 1px solid;
   border-bottom: white 1px solid;
 }
-.game-search-bar {
+.search-bar {
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
+.mag {
+  color: white;
+}
 .game-form {
   margin-right: 5px;
 }
 .game-item-title {
   margin-left: 10px;
+}
+
+.no-channels-message {
+  justify-content: center;
+  display: flex;
+  margin-top: 30px;
 }
 
 .logo {
@@ -115,7 +143,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: grey;
+  background-color: gray;
 
 }
 .clip-list-section {
@@ -244,9 +272,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightgrey;
+  background-color: #6441a4;
   padding: 20px;
   border-radius: 2px;
+  color: white;
 }
 
 .welcome-items {

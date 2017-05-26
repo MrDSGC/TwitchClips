@@ -71,40 +71,64 @@ class GameNav extends React.Component {
         </ul>
       )
     } else {
-      return(
-        <ul className="game-list">
-          {this.props.games.map( (game, idx) => {
-            return(
-              <li className="game-item"
-                onClick={this.handleGameGenreChange(game.name)}
-                key={idx}>
-                <img className="logo" src={game.box.small}></img>
-                <div className="game-item-title">
-                  {game.name}
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      )
+      if(this.props.games === null) {
+        return(
+          <ul className="game-list">
+            <div className="no-channels-message">
+              <div>
+                Game Not Found!
+              </div>
+            </div>
+          </ul>
+        )
+      } else {
+        return(
+          <ul className="game-list">
+            {this.props.games.map( (game, idx) => {
+              return(
+                <li className="game-item"
+                  onClick={this.handleGameGenreChange(game.name)}
+                  key={idx}>
+                  <img className="logo" src={game.box.small}></img>
+                  <div className="game-item-title">
+                    {game.name}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        )
+      }
     }
   }
 
   channelsList() {
-    return (
-      this.props.channels.map( (channel, idx) => {
-        return(
-          <li className="game-item"
-            onClick={this.handleChannelGenreChange(channel.name)}
-            key={idx}>
-            <img className="logo" src={channel.logo}></img>
-            <div className="game-item-title">
-              {channel.name}
-            </div>
-          </li>
-        )
-      })
-    )
+
+    if(this.props.channels.length === 0) {
+      return(
+        <div className="no-channels-message">
+          <div>
+            Find Channels Here!
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        this.props.channels.map( (channel, idx) => {
+          return(
+            <li className="game-item"
+              onClick={this.handleChannelGenreChange(channel.name)}
+              key={idx}>
+              <img className="logo" src={channel.logo}></img>
+              <div className="game-item-title">
+                {channel.name}
+              </div>
+            </li>
+          )
+        })
+      )
+
+    }
   }
 
   handleGameSubmit(e) {
@@ -160,14 +184,20 @@ class GameNav extends React.Component {
         Twitch Klips
       </div>
 
-      <div className="game-search-bar">
+      <div className="search-bar">
         {this.gameSearchBar()}
+        <div className="mag">
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </div>
       </div>
 
       {this.gamesList()}
 
-      <div className="channel-search-bar">
+      <div className="search-bar">
         {this.channelSearchBar()}
+        <div className="mag">
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </div>
       </div>
 
       <ul className="game-list">
