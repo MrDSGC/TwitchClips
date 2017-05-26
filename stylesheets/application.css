@@ -67,7 +67,7 @@ body {
 }
 
 .game-title {
-  font-family: "dimitri";
+  font-family: 'Dimitri Swank';
   font-size: 25px;
   color: white;
   margin-left: 46px;
@@ -140,6 +140,7 @@ body {
 
 .window {
   height: calc(100% - 147px);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -219,7 +220,7 @@ body {
 }
 
 .clip-view-section {
-  width: calc(100% - 268.8px);
+  width: calc(100% - 268px);
 
 }
 .clip-view-window {
