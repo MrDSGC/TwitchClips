@@ -24,47 +24,55 @@ class GameNav extends React.Component {
     return () => this.props.receiveGenre(genre)
   }
 
+  games() {
+    return(
+      this.props.games.map( (game, idx) => {
+        return(
+          <li className="game-item"
+            onClick={this.handleGenreChange(game.game.name)}
+            key={idx}>
+            <img className="logo" src={game.game.box.small}></img>
+            <div className="game-item-title">
+              {game.game.name}
+            </div>
+          </li>
+        )
+      })
+    )
+  }
+
   gamesList() {
 
     if(this.state.top) {
       return(
-        <li className="game-item"
-          onClick={this.handleGenreChange('Trending')}
-          key={26}>
-          <div className="trending">
-            <i className="fa fa-twitch" aria-hidden="true"></i>
-          </div>
-          <div className="game-item-title">Trending</div>
-        </li>
-      )
-      return (
-        this.props.games.map( (game, idx) => {
-          return(
-            <li className="game-item"
-              onClick={this.handleGenreChange(game.game.name)}
-              key={idx}>
-              <img className="logo" src={game.game.box.small}></img>
-              <div className="game-item-title">
-                {game.game.name}
-              </div>
-            </li>
-          )
-        })
+        <ul className="game-list">
+          <li className="game-item"
+            onClick={this.handleGenreChange('Trending')}
+            key={26}>
+            <div className="trending">
+              <i className="fa fa-twitch" aria-hidden="true"></i>
+            </div>
+            <div className="game-item-title">Trending</div>
+          </li>
+          {this.games()}
+        </ul>
       )
     } else {
       return(
-        this.props.games.map( (game, idx) => {
-          return(
-            <li className="game-item"
-              onClick={this.handleGenreChange(game.name)}
-              key={idx}>
-              <img className="logo" src={game.box.small}></img>
-              <div className="game-item-title">
-                {game.name}
-              </div>
-            </li>
-          )
-        })
+        <ul className="game-list">
+          {this.props.games.map( (game, idx) => {
+            return(
+              <li className="game-item"
+                onClick={this.handleGenreChange(game.name)}
+                key={idx}>
+                <img className="logo" src={game.box.small}></img>
+                <div className="game-item-title">
+                  {game.name}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       )
     }
   }
@@ -148,9 +156,7 @@ class GameNav extends React.Component {
         {this.gameSearchBar()}
       </div>
 
-      <ul className= "game-list">
-        {this.gamesList()}
-      </ul>
+      {this.gamesList()}
 
       <div className="footer">
         <ul className="footer-list">

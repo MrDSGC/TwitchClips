@@ -16999,68 +16999,83 @@ var GameNav = function (_React$Component) {
       };
     }
   }, {
-    key: 'gamesList',
-    value: function gamesList() {
+    key: 'games',
+    value: function games() {
       var _this3 = this;
 
-      if (this.state.top) {
+      return this.props.games.map(function (game, idx) {
         return _react2.default.createElement(
           'li',
           { className: 'game-item',
-            onClick: this.handleGenreChange('Trending'),
-            key: 26 },
-          _react2.default.createElement(
-            'div',
-            { className: 'trending' },
-            _react2.default.createElement('i', { className: 'fa fa-twitch', 'aria-hidden': 'true' })
-          ),
+            onClick: _this3.handleGenreChange(game.game.name),
+            key: idx },
+          _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
           _react2.default.createElement(
             'div',
             { className: 'game-item-title' },
-            'Trending'
+            game.game.name
           )
         );
-        return this.props.games.map(function (game, idx) {
-          return _react2.default.createElement(
+      });
+    }
+  }, {
+    key: 'gamesList',
+    value: function gamesList() {
+      var _this4 = this;
+
+      if (this.state.top) {
+        return _react2.default.createElement(
+          'ul',
+          { className: 'game-list' },
+          _react2.default.createElement(
             'li',
             { className: 'game-item',
-              onClick: _this3.handleGenreChange(game.game.name),
-              key: idx },
-            _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
+              onClick: this.handleGenreChange('Trending'),
+              key: 26 },
+            _react2.default.createElement(
+              'div',
+              { className: 'trending' },
+              _react2.default.createElement('i', { className: 'fa fa-twitch', 'aria-hidden': 'true' })
+            ),
             _react2.default.createElement(
               'div',
               { className: 'game-item-title' },
-              game.game.name
+              'Trending'
             )
-          );
-        });
+          ),
+          this.games()
+        );
       } else {
-        return this.props.games.map(function (game, idx) {
-          return _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: _this3.handleGenreChange(game.name),
-              key: idx },
-            _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
-            _react2.default.createElement(
-              'div',
-              { className: 'game-item-title' },
-              game.name
-            )
-          );
-        });
+        return _react2.default.createElement(
+          'ul',
+          { className: 'game-list' },
+          this.props.games.map(function (game, idx) {
+            return _react2.default.createElement(
+              'li',
+              { className: 'game-item',
+                onClick: _this4.handleGenreChange(game.name),
+                key: idx },
+              _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
+              _react2.default.createElement(
+                'div',
+                { className: 'game-item-title' },
+                game.name
+              )
+            );
+          })
+        );
       }
     }
   }, {
     key: 'channelsList',
     value: function channelsList() {
-      var _this4 = this;
+      var _this5 = this;
 
       return this.props.channels.map(function (channel, idx) {
         return _react2.default.createElement(
           'li',
           { className: 'game-item',
-            onClick: _this4.handleGenreChange(game.game.name),
+            onClick: _this5.handleGenreChange(game.game.name),
             key: idx },
           _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
           _react2.default.createElement(
@@ -17089,10 +17104,10 @@ var GameNav = function (_React$Component) {
   }, {
     key: 'update',
     value: function update(field) {
-      var _this5 = this;
+      var _this6 = this;
 
       return function (e) {
-        return _this5.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this6.setState(_defineProperty({}, field, e.currentTarget.value));
       };
       console.log(this.state);
     }
@@ -17149,11 +17164,7 @@ var GameNav = function (_React$Component) {
           { className: 'game-search-bar' },
           this.gameSearchBar()
         ),
-        _react2.default.createElement(
-          'ul',
-          { className: 'game-list' },
-          this.gamesList()
-        ),
+        this.gamesList(),
         _react2.default.createElement(
           'div',
           { className: 'footer' },
