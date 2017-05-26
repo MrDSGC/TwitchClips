@@ -16721,12 +16721,12 @@ var ClipView = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'welcome-items' },
-            'Select Clips from any of the default games'
+            'Select Clips from any of the Top Games'
           ),
           _react2.default.createElement(
             'div',
             { className: 'welcome-items' },
-            'or Search for games or channels!'
+            'or Search your favorite games and channels!'
           )
         );
       } else {
@@ -16985,7 +16985,7 @@ var GameNav = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (GameNav.__proto__ || Object.getPrototypeOf(GameNav)).call(this, props));
 
-    _this.state = { game: "", channel: "", top: true };
+    _this.state = { game: "", channel: "", topList: true };
     _this.handleGameGenreChange = _this.handleGameGenreChange.bind(_this);
     _this.handleChannelGenreChange = _this.handleChannelGenreChange.bind(_this);
     _this.gamesList = _this.gamesList.bind(_this);
@@ -17046,7 +17046,7 @@ var GameNav = function (_React$Component) {
     value: function gamesList() {
       var _this5 = this;
 
-      if (this.state.top) {
+      if (this.state.topList) {
         return _react2.default.createElement(
           'ul',
           { className: 'game-list' },
@@ -17143,7 +17143,7 @@ var GameNav = function (_React$Component) {
       e.preventDefault();
       var gameQuery = this.state.game;
       this.props.fetchGames(gameQuery);
-      this.setState({ top: false });
+      this.setState({ topList: false });
     }
   }, {
     key: 'handleChannelSubmit',
@@ -17238,7 +17238,10 @@ var GameNav = function (_React$Component) {
               { className: 'f-list-item' },
               _react2.default.createElement(
                 'a',
-                { href: 'https://github.com/mrdsgc', target: '_blank', className: 'fa fa-github' },
+                { href: 'https://github.com/mrdsgc',
+                  target: '_blank',
+                  className: 'fa fa-github',
+                  id: 'font-awesome-icon' },
                 _react2.default.createElement(
                   'span',
                   { className: 'f-label' },
@@ -17251,7 +17254,10 @@ var GameNav = function (_React$Component) {
               { className: 'f-list-item' },
               _react2.default.createElement(
                 'a',
-                { href: 'https://www.linkedin.com/in/dcheng47', target: '_blank', className: 'fa fa-linkedin' },
+                { href: 'https://www.linkedin.com/in/dcheng47',
+                  target: '_blank',
+                  className: 'fa fa-linkedin',
+                  id: 'font-awesome-icon' },
                 _react2.default.createElement(
                   'span',
                   { className: 'f-label' },
@@ -17264,7 +17270,10 @@ var GameNav = function (_React$Component) {
               { className: 'f-list-item' },
               _react2.default.createElement(
                 'a',
-                { href: 'http://www.danielscheng.com', target: '_blank', className: 'fa fa-id-card' },
+                { href: 'http://www.danielscheng.com',
+                  target: '_blank',
+                  className: 'fa fa-id-card',
+                  id: 'font-awesome-icon' },
                 _react2.default.createElement(
                   'span',
                   { className: 'f-label' },

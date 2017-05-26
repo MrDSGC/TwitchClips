@@ -13,10 +13,10 @@ class ClipView extends React.Component {
             Welcome to Twitch Klips!
           </div>
           <div className="welcome-items">
-            Select Clips from any of the default games
+            Select Clips from any of the Top Games
           </div>
           <div className="welcome-items">
-            or Search for games or channels!
+            or Search your favorite games and channels!
           </div>
         </div>
       )

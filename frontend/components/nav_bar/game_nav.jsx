@@ -6,7 +6,7 @@ class GameNav extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { game: "", channel: "", top: true}
+    this.state = { game: "", channel: "", topList: true}
     this.handleGameGenreChange = this.handleGameGenreChange.bind(this);
     this.handleChannelGenreChange = this.handleChannelGenreChange.bind(this);
     this.gamesList = this.gamesList.bind(this)
@@ -56,7 +56,7 @@ class GameNav extends React.Component {
 
   gamesList() {
 
-    if(this.state.top) {
+    if(this.state.topList) {
       return(
         <ul className="game-list">
           <li className="game-item"
@@ -135,7 +135,7 @@ class GameNav extends React.Component {
 		e.preventDefault();
 		const gameQuery = this.state.game;
 		this.props.fetchGames(gameQuery);
-    this.setState({top: false});
+    this.setState({topList: false});
 	}
 
   handleChannelSubmit(e) {
@@ -207,13 +207,27 @@ class GameNav extends React.Component {
       <div className="footer">
         <ul className="footer-list">
           <li className="f-list-item">
-            <a href="https://github.com/mrdsgc" target="_blank" className="fa fa-github"><span className="f-label">GitHub</span></a>
+            <a href="https://github.com/mrdsgc"
+               target="_blank"
+               className="fa fa-github"
+               id="font-awesome-icon">
+               <span className="f-label">GitHub</span></a>
           </li>
           <li className="f-list-item">
-            <a href="https://www.linkedin.com/in/dcheng47" target="_blank" className="fa fa-linkedin"><span className="f-label">LinkedIn</span></a>
+            <a href="https://www.linkedin.com/in/dcheng47"
+               target="_blank"
+               className="fa fa-linkedin"
+               id="font-awesome-icon">
+               <span className="f-label">LinkedIn</span>
+            </a>
           </li>
           <li className="f-list-item">
-            <a href="http://www.danielscheng.com" target="_blank" className="fa fa-id-card"><span className="f-label">Portfolio</span></a>
+            <a href="http://www.danielscheng.com"
+               target="_blank"
+               className="fa fa-id-card"
+               id="font-awesome-icon">
+               <span className="f-label">Portfolio</span>
+            </a>
           </li>
         </ul>
       </div>
