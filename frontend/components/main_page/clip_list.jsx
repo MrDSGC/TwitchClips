@@ -13,12 +13,14 @@ class ClipList extends React.Component {
     return () => this.props.receiveClip(url);
   }
   componentDidUpdate(prevProps) {
+
     if(prevProps !== this.props) {
       if(this.props.genre === 'Trending') {
         this.props.fetchTrendingClips();
-      } else {
+      } else if(this.props.genreSource === "game") {
         this.props.fetchGameClips(this.props.genre);
-        // this.props.fetchChannelClips(this.props.genre)
+      } else {
+        this.props.fetchChannelClips(this.props.genre)
       }
     }
   }

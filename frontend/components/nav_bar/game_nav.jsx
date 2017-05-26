@@ -7,7 +7,8 @@ class GameNav extends React.Component {
     super(props)
 
     this.state = { game: "", channel: "", top: true}
-    this.handleGenreChange = this.handleGenreChange.bind(this);
+    this.handleGameGenreChange = this.handleGameGenreChange.bind(this);
+    this.handleChannelGenreChange = this.handleChannelGenreChange.bind(this);
     this.gamesList = this.gamesList.bind(this)
     this.channelsList = this.channelsList.bind(this)
     this.update = this.update.bind(this)
@@ -20,8 +21,20 @@ class GameNav extends React.Component {
   }
 
 
-  handleGenreChange(genre) {
-    return () => this.props.receiveGenre(genre)
+  handleGameGenreChange(genre) {
+    return(() => {
+      this.props.receiveGenre(genre)
+      this.props.receiveGenreSource("game")
+      }
+    )
+  }
+
+  handleChannelGenreChange(genre) {
+    return(() => {
+      this.props.receiveGenre(genre)
+      this.props.receiveGenreSource("channel")
+      }
+    )
   }
 
   games() {
@@ -29,7 +42,7 @@ class GameNav extends React.Component {
       this.props.games.map( (game, idx) => {
         return(
           <li className="game-item"
-            onClick={this.handleGenreChange(game.game.name)}
+            onClick={this.handleGameGenreChange(game.game.name)}
             key={idx}>
             <img className="logo" src={game.game.box.small}></img>
             <div className="game-item-title">
@@ -47,7 +60,7 @@ class GameNav extends React.Component {
       return(
         <ul className="game-list">
           <li className="game-item"
-            onClick={this.handleGenreChange('Trending')}
+            onClick={this.handleGameGenreChange('Trending')}
             key={26}>
             <div className="trending">
               <i className="fa fa-twitch" aria-hidden="true"></i>
@@ -63,7 +76,7 @@ class GameNav extends React.Component {
           {this.props.games.map( (game, idx) => {
             return(
               <li className="game-item"
-                onClick={this.handleGenreChange(game.name)}
+                onClick={this.handleGameGenreChange(game.name)}
                 key={idx}>
                 <img className="logo" src={game.box.small}></img>
                 <div className="game-item-title">
@@ -82,11 +95,11 @@ class GameNav extends React.Component {
       this.props.channels.map( (channel, idx) => {
         return(
           <li className="game-item"
-            onClick={this.handleGenreChange(game.game.name)}
+            onClick={this.handleChannelGenreChange(channel.name)}
             key={idx}>
-            <img className="logo" src={game.game.box.small}></img>
+            <img className="logo" src={channel.logo}></img>
             <div className="game-item-title">
-              {game.game.name}
+              {channel.name}
             </div>
           </li>
         )
@@ -128,23 +141,18 @@ class GameNav extends React.Component {
   }
 
   channelSearchBar() {
-    <form className="channel-form"
-          onSubmit={this.handleChannelSubmit}>
-      <input type="text"
-        className="inputs"
-        value={this.state.channel}
-        placeholder="Search Channels"
-        onChange={this.update("channel")}/>
-    </form>
+    return(
+      <form className="game-form"
+        onSubmit={this.handleChannelSubmit}>
+        <input type="text"
+          className="inputs"
+          value={this.state.channel}
+          placeholder="Search Channels"
+          onChange={this.update("channel")}/>
+      </form>
+    )
   }
 
-  // <div className="channel-search-bar">
-  //
-  // </div>
-  //
-  // <ul className="channel-list">
-  //   {this.channelsList()}
-  // </ul>
   render () {
     return(
     <div className="nav-bar">
@@ -157,6 +165,14 @@ class GameNav extends React.Component {
       </div>
 
       {this.gamesList()}
+
+      <div className="channel-search-bar">
+        {this.channelSearchBar()}
+      </div>
+
+      <ul className="game-list">
+        {this.channelsList()}
+      </ul>
 
       <div className="footer">
         <ul className="footer-list">

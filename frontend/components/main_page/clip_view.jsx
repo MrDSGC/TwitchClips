@@ -16,7 +16,7 @@ class ClipView extends React.Component {
             Select Clips from any of the default games
           </div>
           <div className="welcome-items">
-            or Search for your own!
+            or Search for games or channels!
           </div>
         </div>
       )

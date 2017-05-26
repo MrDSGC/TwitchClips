@@ -10,7 +10,8 @@ import ClipList from './clip_list';
 const mapStateToProps = state => {
   return ({
     genre: state.genre,
-    clips: state.clips
+    clips: state.clips,
+    genreSource: state.genreSource
   })
 };
 

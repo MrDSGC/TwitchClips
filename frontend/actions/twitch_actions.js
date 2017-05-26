@@ -1,6 +1,7 @@
 import * as APIUtil from '../util/twitch_api_util';
 
 export const RECEIVE_GENRE = 'RECEIVE_GENRE'; //this does not work
+export const RECEIVE_GENRE_SOURCE = 'RECEIVE_GENRE_SOURCE'; //this does not work
 export const RECEIVE_CLIPS = 'RECEIVE_CLIPS';  //this does not work
 export const RECEIVE_CLIP = 'RECEIVE_CLIP';  //this does not work
 export const RECEIVE_CHANNELS = 'RECEIVE_CHANNELS';  //this does not work
@@ -20,6 +21,11 @@ export const receiveClip = clip => ({
 export const receiveGenre = genre => ({
   type: RECEIVE_GENRE,
   genre
+});
+
+export const receiveGenreSource = genreSource => ({
+  type: RECEIVE_GENRE_SOURCE,
+  genreSource
 });
 
 export const receiveChannels = channels => ({
@@ -47,7 +53,7 @@ export const fetchTrendingClips = () => dispatch => (
 );
 
 export const fetchChannelClips = channel => dispatch => (
-  APIUtil.getChannelClip(channel)
+  APIUtil.getChannelClips(channel)
     .then(clips => dispatch(receiveClips(clips)))
 );
 

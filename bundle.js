@@ -3248,7 +3248,7 @@ module.exports = SyntheticEvent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchTopGames = exports.fetchGames = exports.fetchChannels = exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGames = exports.receiveTopGames = exports.receiveChannels = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_GAMES = exports.RECEIVE_TOP_GAMES = exports.RECEIVE_CHANNELS = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE = undefined;
+exports.fetchTopGames = exports.fetchGames = exports.fetchChannels = exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGames = exports.receiveTopGames = exports.receiveChannels = exports.receiveGenreSource = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_GAMES = exports.RECEIVE_TOP_GAMES = exports.RECEIVE_CHANNELS = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE_SOURCE = exports.RECEIVE_GENRE = undefined;
 
 var _twitch_api_util = __webpack_require__(96);
 
@@ -3257,6 +3257,7 @@ var APIUtil = _interopRequireWildcard(_twitch_api_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_GENRE = exports.RECEIVE_GENRE = 'RECEIVE_GENRE'; //this does not work
+var RECEIVE_GENRE_SOURCE = exports.RECEIVE_GENRE_SOURCE = 'RECEIVE_GENRE_SOURCE'; //this does not work
 var RECEIVE_CLIPS = exports.RECEIVE_CLIPS = 'RECEIVE_CLIPS'; //this does not work
 var RECEIVE_CLIP = exports.RECEIVE_CLIP = 'RECEIVE_CLIP'; //this does not work
 var RECEIVE_CHANNELS = exports.RECEIVE_CHANNELS = 'RECEIVE_CHANNELS'; //this does not work
@@ -3281,6 +3282,13 @@ var receiveGenre = exports.receiveGenre = function receiveGenre(genre) {
   return {
     type: RECEIVE_GENRE,
     genre: genre
+  };
+};
+
+var receiveGenreSource = exports.receiveGenreSource = function receiveGenreSource(genreSource) {
+  return {
+    type: RECEIVE_GENRE_SOURCE,
+    genreSource: genreSource
   };
 };
 
@@ -3322,7 +3330,7 @@ var fetchTrendingClips = exports.fetchTrendingClips = function fetchTrendingClip
 
 var fetchChannelClips = exports.fetchChannelClips = function fetchChannelClips(channel) {
   return function (dispatch) {
-    return APIUtil.getChannelClip(channel).then(function (clips) {
+    return APIUtil.getChannelClips(channel).then(function (clips) {
       return dispatch(receiveClips(clips));
     });
   };
@@ -16599,12 +16607,14 @@ var ClipList = function (_React$Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
+
       if (prevProps !== this.props) {
         if (this.props.genre === 'Trending') {
           this.props.fetchTrendingClips();
-        } else {
+        } else if (this.props.genreSource === "game") {
           this.props.fetchGameClips(this.props.genre);
-          // this.props.fetchChannelClips(this.props.genre)
+        } else {
+          this.props.fetchChannelClips(this.props.genre);
         }
       }
     }
@@ -16716,7 +16726,7 @@ var ClipView = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'welcome-items' },
-            'or Search for your own!'
+            'or Search for games or channels!'
           )
         );
       } else {
@@ -16801,7 +16811,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     genre: state.genre,
-    clips: state.clips
+    clips: state.clips,
+    genreSource: state.genreSource
   };
 };
 
@@ -16975,7 +16986,8 @@ var GameNav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (GameNav.__proto__ || Object.getPrototypeOf(GameNav)).call(this, props));
 
     _this.state = { game: "", channel: "", top: true };
-    _this.handleGenreChange = _this.handleGenreChange.bind(_this);
+    _this.handleGameGenreChange = _this.handleGameGenreChange.bind(_this);
+    _this.handleChannelGenreChange = _this.handleChannelGenreChange.bind(_this);
     _this.gamesList = _this.gamesList.bind(_this);
     _this.channelsList = _this.channelsList.bind(_this);
     _this.update = _this.update.bind(_this);
@@ -16990,24 +17002,35 @@ var GameNav = function (_React$Component) {
       this.props.fetchTopGames();
     }
   }, {
-    key: 'handleGenreChange',
-    value: function handleGenreChange(genre) {
+    key: 'handleGameGenreChange',
+    value: function handleGameGenreChange(genre) {
       var _this2 = this;
 
       return function () {
-        return _this2.props.receiveGenre(genre);
+        _this2.props.receiveGenre(genre);
+        _this2.props.receiveGenreSource("game");
+      };
+    }
+  }, {
+    key: 'handleChannelGenreChange',
+    value: function handleChannelGenreChange(genre) {
+      var _this3 = this;
+
+      return function () {
+        _this3.props.receiveGenre(genre);
+        _this3.props.receiveGenreSource("channel");
       };
     }
   }, {
     key: 'games',
     value: function games() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.props.games.map(function (game, idx) {
         return _react2.default.createElement(
           'li',
           { className: 'game-item',
-            onClick: _this3.handleGenreChange(game.game.name),
+            onClick: _this4.handleGameGenreChange(game.game.name),
             key: idx },
           _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
           _react2.default.createElement(
@@ -17021,7 +17044,7 @@ var GameNav = function (_React$Component) {
   }, {
     key: 'gamesList',
     value: function gamesList() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.state.top) {
         return _react2.default.createElement(
@@ -17030,7 +17053,7 @@ var GameNav = function (_React$Component) {
           _react2.default.createElement(
             'li',
             { className: 'game-item',
-              onClick: this.handleGenreChange('Trending'),
+              onClick: this.handleGameGenreChange('Trending'),
               key: 26 },
             _react2.default.createElement(
               'div',
@@ -17053,7 +17076,7 @@ var GameNav = function (_React$Component) {
             return _react2.default.createElement(
               'li',
               { className: 'game-item',
-                onClick: _this4.handleGenreChange(game.name),
+                onClick: _this5.handleGameGenreChange(game.name),
                 key: idx },
               _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
               _react2.default.createElement(
@@ -17069,19 +17092,19 @@ var GameNav = function (_React$Component) {
   }, {
     key: 'channelsList',
     value: function channelsList() {
-      var _this5 = this;
+      var _this6 = this;
 
       return this.props.channels.map(function (channel, idx) {
         return _react2.default.createElement(
           'li',
           { className: 'game-item',
-            onClick: _this5.handleGenreChange(game.game.name),
+            onClick: _this6.handleChannelGenreChange(channel.name),
             key: idx },
-          _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
+          _react2.default.createElement('img', { className: 'logo', src: channel.logo }),
           _react2.default.createElement(
             'div',
             { className: 'game-item-title' },
-            game.game.name
+            channel.name
           )
         );
       });
@@ -17104,10 +17127,10 @@ var GameNav = function (_React$Component) {
   }, {
     key: 'update',
     value: function update(field) {
-      var _this6 = this;
+      var _this7 = this;
 
       return function (e) {
-        return _this6.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this7.setState(_defineProperty({}, field, e.currentTarget.value));
       };
       console.log(this.state);
     }
@@ -17128,9 +17151,9 @@ var GameNav = function (_React$Component) {
   }, {
     key: 'channelSearchBar',
     value: function channelSearchBar() {
-      _react2.default.createElement(
+      return _react2.default.createElement(
         'form',
-        { className: 'channel-form',
+        { className: 'game-form',
           onSubmit: this.handleChannelSubmit },
         _react2.default.createElement('input', { type: 'text',
           className: 'inputs',
@@ -17139,15 +17162,6 @@ var GameNav = function (_React$Component) {
           onChange: this.update("channel") })
       );
     }
-
-    // <div className="channel-search-bar">
-    //
-    // </div>
-    //
-    // <ul className="channel-list">
-    //   {this.channelsList()}
-    // </ul>
-
   }, {
     key: 'render',
     value: function render() {
@@ -17165,6 +17179,16 @@ var GameNav = function (_React$Component) {
           this.gameSearchBar()
         ),
         this.gamesList(),
+        _react2.default.createElement(
+          'div',
+          { className: 'channel-search-bar' },
+          this.channelSearchBar()
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'game-list' },
+          this.channelsList()
+        ),
         _react2.default.createElement(
           'div',
           { className: 'footer' },
@@ -17253,6 +17277,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     receiveGenre: function receiveGenre(genre) {
       return dispatch((0, _twitch_actions.receiveGenre)(genre));
+    },
+    receiveGenreSource: function receiveGenreSource(genreSource) {
+      return dispatch((0, _twitch_actions.receiveGenreSource)(genreSource));
     },
     fetchTopGames: function fetchTopGames() {
       return dispatch((0, _twitch_actions.fetchTopGames)());
@@ -17410,6 +17437,10 @@ var _genre_reducer = __webpack_require__(184);
 
 var _genre_reducer2 = _interopRequireDefault(_genre_reducer);
 
+var _genre_source_reducer = __webpack_require__(393);
+
+var _genre_source_reducer2 = _interopRequireDefault(_genre_source_reducer);
+
 var _games_reducer = __webpack_require__(392);
 
 var _games_reducer2 = _interopRequireDefault(_games_reducer);
@@ -17425,7 +17456,8 @@ exports.default = (0, _redux.combineReducers)({
   genre: _genre_reducer2.default,
   clip: _clip_reducer2.default,
   games: _games_reducer2.default,
-  channels: _channels_reducer2.default
+  channels: _channels_reducer2.default,
+  genreSource: _genre_source_reducer2.default
 });
 
 /***/ }),
@@ -34490,7 +34522,7 @@ var ChannelsReducer = function ChannelsReducer() {
   var newState = (0, _merge2.default)({}, state);
   switch (action.type) {
     case 'RECEIVE_CHANNELS':
-      return action.channels;
+      return action.channels.channels;
     default:
       return state;
   }
@@ -34538,6 +34570,45 @@ var GamesReducer = function GamesReducer() {
 };
 
 exports.default = GamesReducer;
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _merge = __webpack_require__(67);
+
+var _merge2 = _interopRequireDefault(_merge);
+
+var _twitch_actions = __webpack_require__(25);
+
+var _twitch_actions2 = _interopRequireDefault(_twitch_actions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initialState = "game";
+
+var GenreSourceReducer = function GenreSourceReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = (0, _merge2.default)({}, state);
+  switch (action.type) {
+    case 'RECEIVE_GENRE_SOURCE':
+      return action.genreSource;
+    default:
+      return state;
+  }
+};
+
+exports.default = GenreSourceReducer;
 
 /***/ })
 /******/ ]);
