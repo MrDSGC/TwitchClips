@@ -7,4 +7,19 @@ TwitchKlips is a project i designed for playing around with twitch's multiple AP
 
 ##features
 
-### 
+### Clip List and View
+
+### Top Games
+
+
+### Game Search
+
+### Channel Search
+
+### Future features
+
+### Chatbox
+
+### More API endpoints!
+
+  To begin with, this was a fun project for playing around with twitch's api endpoints. I would love to possibly expand this app into a single page application and utilize some of their other APIs as well!
