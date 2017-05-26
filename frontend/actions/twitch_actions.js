@@ -4,6 +4,7 @@ export const RECEIVE_GENRE = 'RECEIVE_GENRE'; //this does not work
 export const RECEIVE_CLIPS = 'RECEIVE_CLIPS';  //this does not work
 export const RECEIVE_CLIP = 'RECEIVE_CLIP';  //this does not work
 export const RECEIVE_CHANNELS = 'RECEIVE_CHANNELS';  //this does not work
+export const RECEIVE_TOP_GAMES = 'RECEIVE_TOP_GAMES';  //this does not work
 export const RECEIVE_GAMES = 'RECEIVE_GAMES';  //this does not work
 
 export const receiveClips = clips => ({
@@ -26,6 +27,10 @@ export const receiveChannels = channels => ({
   channels
 });
 
+export const receiveTopGames = games => ({
+  type: RECEIVE_TOP_GAMES,
+  games
+});
 export const receiveGames = games => ({
   type: RECEIVE_GAMES,
   games
@@ -58,5 +63,5 @@ export const fetchGames = query => dispatch => (
 
 export const fetchTopGames = () => dispatch => (
   APIUtil.topGames()
-    .then(games => dispatch(receiveGames(games)))
+    .then(games => dispatch(receiveTopGames(games)))
 );

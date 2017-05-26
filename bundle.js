@@ -3248,7 +3248,7 @@ module.exports = SyntheticEvent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchTopGames = exports.fetchGames = exports.fetchChannels = exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGames = exports.receiveChannels = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_GAMES = exports.RECEIVE_CHANNELS = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE = undefined;
+exports.fetchTopGames = exports.fetchGames = exports.fetchChannels = exports.fetchChannelClips = exports.fetchTrendingClips = exports.fetchGameClips = exports.receiveGames = exports.receiveTopGames = exports.receiveChannels = exports.receiveGenre = exports.receiveClip = exports.receiveClips = exports.RECEIVE_GAMES = exports.RECEIVE_TOP_GAMES = exports.RECEIVE_CHANNELS = exports.RECEIVE_CLIP = exports.RECEIVE_CLIPS = exports.RECEIVE_GENRE = undefined;
 
 var _twitch_api_util = __webpack_require__(96);
 
@@ -3260,6 +3260,7 @@ var RECEIVE_GENRE = exports.RECEIVE_GENRE = 'RECEIVE_GENRE'; //this does not wor
 var RECEIVE_CLIPS = exports.RECEIVE_CLIPS = 'RECEIVE_CLIPS'; //this does not work
 var RECEIVE_CLIP = exports.RECEIVE_CLIP = 'RECEIVE_CLIP'; //this does not work
 var RECEIVE_CHANNELS = exports.RECEIVE_CHANNELS = 'RECEIVE_CHANNELS'; //this does not work
+var RECEIVE_TOP_GAMES = exports.RECEIVE_TOP_GAMES = 'RECEIVE_TOP_GAMES'; //this does not work
 var RECEIVE_GAMES = exports.RECEIVE_GAMES = 'RECEIVE_GAMES'; //this does not work
 
 var receiveClips = exports.receiveClips = function receiveClips(clips) {
@@ -3290,6 +3291,12 @@ var receiveChannels = exports.receiveChannels = function receiveChannels(channel
   };
 };
 
+var receiveTopGames = exports.receiveTopGames = function receiveTopGames(games) {
+  return {
+    type: RECEIVE_TOP_GAMES,
+    games: games
+  };
+};
 var receiveGames = exports.receiveGames = function receiveGames(games) {
   return {
     type: RECEIVE_GAMES,
@@ -3340,7 +3347,7 @@ var fetchGames = exports.fetchGames = function fetchGames(query) {
 var fetchTopGames = exports.fetchTopGames = function fetchTopGames() {
   return function (dispatch) {
     return APIUtil.topGames().then(function (games) {
-      return dispatch(receiveGames(games));
+      return dispatch(receiveTopGames(games));
     });
   };
 };
@@ -16967,7 +16974,7 @@ var GameNav = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (GameNav.__proto__ || Object.getPrototypeOf(GameNav)).call(this, props));
 
-    _this.state = { game: "", channel: "" };
+    _this.state = { game: "", channel: "", top: true };
     _this.handleGenreChange = _this.handleGenreChange.bind(_this);
     _this.gamesList = _this.gamesList.bind(_this);
     _this.channelsList = _this.channelsList.bind(_this);
@@ -16996,20 +17003,53 @@ var GameNav = function (_React$Component) {
     value: function gamesList() {
       var _this3 = this;
 
-      return this.props.games.map(function (game, idx) {
+      if (this.state.top) {
         return _react2.default.createElement(
           'li',
           { className: 'game-item',
-            onClick: _this3.handleGenreChange(game.game.name),
-            key: idx },
-          _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
+            onClick: this.handleGenreChange('Trending'),
+            key: 26 },
+          _react2.default.createElement(
+            'div',
+            { className: 'trending' },
+            _react2.default.createElement('i', { className: 'fa fa-twitch', 'aria-hidden': 'true' })
+          ),
           _react2.default.createElement(
             'div',
             { className: 'game-item-title' },
-            game.game.name
+            'Trending'
           )
         );
-      });
+        return this.props.games.map(function (game, idx) {
+          return _react2.default.createElement(
+            'li',
+            { className: 'game-item',
+              onClick: _this3.handleGenreChange(game.game.name),
+              key: idx },
+            _react2.default.createElement('img', { className: 'logo', src: game.game.box.small }),
+            _react2.default.createElement(
+              'div',
+              { className: 'game-item-title' },
+              game.game.name
+            )
+          );
+        });
+      } else {
+        return this.props.games.map(function (game, idx) {
+          return _react2.default.createElement(
+            'li',
+            { className: 'game-item',
+              onClick: _this3.handleGenreChange(game.name),
+              key: idx },
+            _react2.default.createElement('img', { className: 'logo', src: game.box.small }),
+            _react2.default.createElement(
+              'div',
+              { className: 'game-item-title' },
+              game.name
+            )
+          );
+        });
+      }
     }
   }, {
     key: 'channelsList',
@@ -17037,6 +17077,7 @@ var GameNav = function (_React$Component) {
       e.preventDefault();
       var gameQuery = this.state.game;
       this.props.fetchGames(gameQuery);
+      this.setState({ top: false });
     }
   }, {
     key: 'handleChannelSubmit',
@@ -17111,22 +17152,6 @@ var GameNav = function (_React$Component) {
         _react2.default.createElement(
           'ul',
           { className: 'game-list' },
-          _react2.default.createElement(
-            'li',
-            { className: 'game-item',
-              onClick: this.handleGenreChange('Trending'),
-              key: 26 },
-            _react2.default.createElement(
-              'div',
-              { className: 'trending' },
-              _react2.default.createElement('i', { className: 'fa fa-twitch', 'aria-hidden': 'true' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'game-item-title' },
-              'Trending'
-            )
-          ),
           this.gamesList()
         ),
         _react2.default.createElement(
@@ -34492,8 +34517,10 @@ var GamesReducer = function GamesReducer() {
   Object.freeze(state);
   var newState = (0, _merge2.default)({}, state);
   switch (action.type) {
-    case 'RECEIVE_GAMES':
+    case 'RECEIVE_TOP_GAMES':
       return action.games.top;
+    case 'RECEIVE_GAMES':
+      return action.games.games;
     default:
       return state;
   }
