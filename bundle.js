@@ -16716,7 +16716,7 @@ var ClipView = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'welcome-items' },
-            'Search option coming soon'
+            'or Search for your own!'
           )
         );
       } else {
