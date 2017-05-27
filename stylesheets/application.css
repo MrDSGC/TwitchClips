@@ -135,7 +135,7 @@ body {
 
 .watch-window {
   float: right;
-  width: 79%;
+  width: calc( 100% - 268px );
 }
 
 .window {
