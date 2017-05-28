@@ -108,7 +108,7 @@ class GameNav extends React.Component {
       return(
         <div className="no-channels-message">
           <div>
-            Find Channels Here!
+            Search Channels Here!
           </div>
         </div>
       )
