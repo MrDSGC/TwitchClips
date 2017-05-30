@@ -67,7 +67,7 @@ body {
 }
 
 .game-title {
-  font-family: 'Dimitri Swank';
+  font-family: 'Dimitri Swank', sans-serif;
   font-size: 25px;
   color: white;
   margin-left: 46px;
