@@ -324,14 +324,13 @@ body {
 
 .welcome-text {
   -webkit-text-stroke-color: #6441a4;
-  -webkit-text-stroke-width: 1px;
   font-size: 18px;
   font-weight: bold;
 }
 
 .welcome-clip-list {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   left: 10px;
   display: flex;
   flex-direction: row;
