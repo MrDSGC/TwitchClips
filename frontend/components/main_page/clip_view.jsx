@@ -11,12 +11,16 @@ class ClipView extends React.Component {
       return(
         <div className="welcome-page">
           <div className="welcome-title">
-            Welcome to Twitch Klips!
+            Welcome to Twitch Klips
           </div>
 
           <div className="welcome-blurb">
             <text>
               Find all the top clips for any game or channel on twitch!
+            </text>
+
+            <text className="contact">
+              Questions and suggestions can be directed to dcheng47@gmail.com.
             </text>
           </div>
 
