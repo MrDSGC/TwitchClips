@@ -20,8 +20,9 @@ class ClipView extends React.Component {
             </text>
 
             <text className="contact">
-              Questions and suggestions can be directed to dcheng47@gmail.com.
+              Questions and suggestions can be directed to dcheng47@gmail.com
             </text>
+
           </div>
 
           <div className="welcome-game-search">

@@ -16733,7 +16733,7 @@ var ClipView = function (_React$Component) {
             _react2.default.createElement(
               'text',
               { className: 'contact' },
-              'Questions and suggestions can be directed to dcheng47@gmail.com.'
+              'Questions and suggestions can be directed to dcheng47@gmail.com'
             )
           ),
           _react2.default.createElement(
