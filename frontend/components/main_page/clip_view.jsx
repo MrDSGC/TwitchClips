@@ -25,30 +25,24 @@ class ClipView extends React.Component {
           </div>
 
           <div className="welcome-game-search">
+            <div className="left-arrow"/>
             <div className="welcome-text">
-              Select or search for games on the left!
-            </div>
-            <div className="left-arrow">
-
+              Select or search for games on the left
             </div>
           </div>
 
           <div className="welcome-channel-search">
+            <div className="left-arrow"/>
             <div className="welcome-text">
-              Search and select for your favorite channels on the left!
-            </div>
-            <div className="left-arrow">
-
+              Search and select for your favorite channels on the left
             </div>
           </div>
 
           <div className="welcome-clip-list">
             <div className="welcome-text">
-              Select a clip from the list below!
+              Select a clip from the list below
             </div>
-            <div className="down-arrow">
-
-            </div>
+            <div className="down-arrow"/>
           </div>
         </div>
       )

@@ -305,6 +305,8 @@ body {
 
 .welcome-game-search {
   position: absolute;
+  display: flex;
+  word-wrap: break-word;
   top: 150px;
   left: 10px;
   width: 175px;
@@ -312,6 +314,8 @@ body {
 
 .welcome-channel-search {
   position: absolute;
+  display: flex;
+  word-wrap: break-word;
   top: 350px;
   left: 10px;
   width: 200px;
@@ -329,9 +333,29 @@ body {
   position: absolute;
   bottom: 10px;
   left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 
 }
 
+.left-arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  margin-right: 10px;
+  border-right:10px solid #6441a4;
+}
+
+.down-arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin-left: 10px;
+  border-top: 10px solid #6441a4;
+}
 #font-awesome-icon {
   color:white;
 }
