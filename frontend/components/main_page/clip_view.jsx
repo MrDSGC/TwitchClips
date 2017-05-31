@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 class ClipView extends React.Component {
   constructor(props) {
@@ -9,14 +10,41 @@ class ClipView extends React.Component {
     if(this.props.clip === '') {
       return(
         <div className="welcome-page">
-          <div className="welcome-items">
+          <div className="welcome-title">
             Welcome to Twitch Klips!
           </div>
-          <div className="welcome-items">
-            Select Clips from any of the Top Games
+
+          <div className="welcome-blurb">
+            <text>
+              Find all the top clips for any game or channel on twitch!
+            </text>
           </div>
-          <div className="welcome-items">
-            or Search your favorite games and channels!
+
+          <div className="welcome-game-search">
+            <div className="welcome-text">
+              Select or search for games on the left!
+            </div>
+            <div className="left-arrow">
+
+            </div>
+          </div>
+
+          <div className="welcome-channel-search">
+            <div className="welcome-text">
+              Search and select for your favorite channels on the left!
+            </div>
+            <div className="left-arrow">
+
+            </div>
+          </div>
+
+          <div className="welcome-clip-list">
+            <div className="welcome-text">
+              Select a clip from the list below!
+            </div>
+            <div className="down-arrow">
+
+            </div>
           </div>
         </div>
       )

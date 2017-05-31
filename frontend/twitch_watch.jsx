@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let store;
   store = configureStore();
   window.store = store;
-  store.getTrendingClips = getTrendingClips;
 
   const root = document.getElementById('root');
   Modal.setAppElement(root)

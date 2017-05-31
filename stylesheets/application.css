@@ -144,7 +144,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  background-color: mediumpurple;
 
 }
 .clip-list-section {
@@ -220,11 +220,13 @@ body {
 }
 
 .clip-view-section {
-  width: calc(100% - 268px);
+  width: 100%;
+  height: 100%;
 
 }
 .clip-view-window {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -267,18 +269,61 @@ body {
   border-bottom: 1px solid white;
 }
 
+.welcome-title {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: 700;
+  -webkit-text-stroke-color: #6441a4;
+  -webkit-text-stroke-width: 2px;
+  font-size: 38px;
+}
+
+.welcome-blurb {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  font-weight: 700;
+  -webkit-text-stroke-color: #6441a4;
+  -webkit-text-stroke-width: 1px;
+  font-size: 20px;
+  width: 271px;
+}
+
 .welcome-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #6441a4;
-  padding: 20px;
-  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  position: relative;
   color: white;
 }
 
-.welcome-items {
-  padding: 10px;
+.welcome-game-search {
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  width: 175px;
+}
+
+.welcome-channel-search {
+  position: absolute;
+  top: 350px;
+  left: 10px;
+  width: 200px;
+
+}
+
+.welcome-text {
+  -webkit-text-stroke-color: #6441a4;
+  -webkit-text-stroke-width: 1px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.welcome-clip-list {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
 }
 
 #font-awesome-icon {
