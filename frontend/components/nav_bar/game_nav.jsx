@@ -148,7 +148,6 @@ class GameNav extends React.Component {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
-    console.log(this.state);
   }
 
   gameSearchBar() {
