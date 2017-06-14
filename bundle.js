@@ -16771,8 +16771,6 @@ var ClipView = function (_React$Component) {
         return _react2.default.createElement('iframe', {
           className: 'content',
           src: this.props.clip,
-          width: '900',
-          height: '500',
           frameBorder: '0',
           scrolling: 'no',
           align: 'middle',
@@ -17198,7 +17196,6 @@ var GameNav = function (_React$Component) {
       return function (e) {
         return _this7.setState(_defineProperty({}, field, e.currentTarget.value));
       };
-      console.log(this.state);
     }
   }, {
     key: 'gameSearchBar',

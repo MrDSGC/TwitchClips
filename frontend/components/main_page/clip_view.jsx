@@ -52,8 +52,6 @@ class ClipView extends React.Component {
         <iframe
           className="content"
           src={this.props.clip}
-          width='900'
-          height='500'
           frameBorder='0'
           scrolling='no'
           align='middle'
