@@ -1,13 +1,11 @@
 {
   "name": "widgets",
   "version": "1.0.0",
-  "description": "",
+  "description": "[TwitchKlips live](http://www.twitchklips.site)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack",
-    "webpack": "webpack --watch",
-    "start": "webpack-dev-server"
+    "build:webpack": "NODE_ENV=production webpack --config webpack.prod.config.js",
+      "build": "npm run clean && npm run build:webpack"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +27,17 @@
     "router": "^1.3.0",
     "webpack": "^2.6.0",
     "webpack-dev-server": "^2.3.0"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrDSGC/TwitchClips.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrDSGC/TwitchClips/issues"
+  },
+  "homepage": "https://github.com/MrDSGC/TwitchClips#readme"
 }
