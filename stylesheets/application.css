@@ -34,17 +34,17 @@ body {
 }
 
 .game-nav {
-  background-color: white;
+  background-color: #6441a4;
   float: left;
   width: 268.8px;
 }
 
 .inputs {
-  width: 213px;
-  background-color: white;
-  border: 1px solid black;
+  width: 222px;
+  background-color: mediumpurple;
+  border: none;
   padding: 4px;
-  color: #6441a4;
+  color: white;
 }
 
 .trending {
@@ -64,33 +64,12 @@ body {
 .nav-bar {
   height: 95%;
   margin: 10px;
-  width: 88%;
-  display: none;
-}
-
-.nav-bar-holder {
-  height:100%;
-  display: flex;
-  flex-direction: row;
-  flex: auto;
-  width: 100%;
-}
-
-.nav-bar-collapse-button {
-  width: 15px;
-  background-color: grey;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.triplet {
-
 }
 
 .game-title {
   font-family: 'Dimitri Swank', sans-serif;
   font-size: 25px;
-  color: #6441a4;
+  color: white;
   margin-left: 46px;
 
 }
@@ -99,23 +78,12 @@ body {
 .game-list {
   height: calc(100% - 60%);
   overflow-y: scroll;
-  color: #6441a4;
+  color: white;
   margin-top: 10px;
   margin-bottom: 10px;
   border-top: white 1px solid;
   border-bottom: white 1px solid;
 }
-
-.channel-list {
-  height: calc(100% - 60%);
-  overflow-y: scroll;
-  color: #6441a4;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-top: white 1px solid;
-  border-bottom: white 1px solid;
-}
-
 .search-bar {
   margin-top: 10px;
   display: flex;
@@ -125,19 +93,20 @@ body {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #6441a4;
+  color: white;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #6441a4;
+  color: white;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #6441a4;
+  color: white;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #6441a4;
+  color: white;
 }
 
 .mag {
+  color: white;
 }
 .game-form {
   margin-right: 5px;
@@ -246,8 +215,8 @@ body {
 
 .game-item:hover {
   cursor: pointer;
-  border-top: solid 1px #6441a4;
-  border-bottom: solid 1px #6441a4;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
 }
 
 .clip-view-section {
@@ -266,6 +235,7 @@ body {
 
 .footer {
   position: absolute;
+  bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -282,7 +252,7 @@ body {
   justify-content: space-between;
 }
 .f-label {
-  color: #6441a4;
+  color: white;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -386,7 +356,7 @@ body {
   border-top: 10px solid #6441a4;
 }
 #font-awesome-icon {
-  color: #6441a4;
+  color:white;
 }
 
 .content {

@@ -107,6 +107,9 @@ class GameNav extends React.Component {
     if(this.props.channels.length === 0) {
       return(
         <div className="no-channels-message">
+          <div>
+            Search Channels Here!
+          </div>
         </div>
       )
     } else {
@@ -175,69 +178,59 @@ class GameNav extends React.Component {
 
   render () {
     return(
-      <div className="nav-bar-holder">
-        <div className="nav-bar">
-          <div className='game-title'>
-            Twitch Klips
-          </div>
-
-          <div className="search-bar">
-            {this.gameSearchBar()}
-            <div className="mag">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </div>
-          </div>
-
-          {this.gamesList()}
-
-          <div className="search-bar">
-            {this.channelSearchBar()}
-            <div className="mag">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </div>
-          </div>
-
-          <ul className="channel-list">
-            {this.channelsList()}
-          </ul>
-
-          <div className="footer">
-            <ul className="footer-list">
-              <li className="f-list-item">
-                <a href="https://github.com/mrdsgc"
-                  target="_blank"
-                  className="fa fa-github"
-                  id="font-awesome-icon">
-                  <span className="f-label">GitHub</span></a>
-                </li>
-                <li className="f-list-item">
-                  <a href="https://www.linkedin.com/in/dcheng47"
-                    target="_blank"
-                    className="fa fa-linkedin"
-                    id="font-awesome-icon">
-                    <span className="f-label">LinkedIn</span>
-                  </a>
-                </li>
-                <li className="f-list-item">
-                  <a href="http://www.danielscheng.com"
-                    target="_blank"
-                    className="fa fa-id-card"
-                    id="font-awesome-icon">
-                    <span className="f-label">Portfolio</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="nav-bar-collapse-button">
-            <div className="triplet">
-              <div className="left-arrow"/>
-              <div className="left-arrow"/>
-              <div className="left-arrow"/>
-            </div>
-
-          </div>
+    <div className="nav-bar">
+      <div className='game-title'>
+        Twitch Klips
       </div>
+
+      <div className="search-bar">
+        {this.gameSearchBar()}
+        <div className="mag">
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      {this.gamesList()}
+
+      <div className="search-bar">
+        {this.channelSearchBar()}
+        <div className="mag">
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <ul className="game-list">
+        {this.channelsList()}
+      </ul>
+
+      <div className="footer">
+        <ul className="footer-list">
+          <li className="f-list-item">
+            <a href="https://github.com/mrdsgc"
+               target="_blank"
+               className="fa fa-github"
+               id="font-awesome-icon">
+               <span className="f-label">GitHub</span></a>
+          </li>
+          <li className="f-list-item">
+            <a href="https://www.linkedin.com/in/dcheng47"
+               target="_blank"
+               className="fa fa-linkedin"
+               id="font-awesome-icon">
+               <span className="f-label">LinkedIn</span>
+            </a>
+          </li>
+          <li className="f-list-item">
+            <a href="http://www.danielscheng.com"
+               target="_blank"
+               className="fa fa-id-card"
+               id="font-awesome-icon">
+               <span className="f-label">Portfolio</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     )
   };
 
