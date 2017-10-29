@@ -81,8 +81,6 @@ body {
   color: white;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-top: white 1px solid;
-  border-bottom: white 1px solid;
 }
 .search-bar {
   margin-top: 10px;
@@ -215,8 +213,8 @@ body {
 
 .game-item:hover {
   cursor: pointer;
-  border-left: solid 1px white;
-  border-right: solid 1px white;
+  border-top: solid 1px white;
+  border-bottom: solid 1px white;
 }
 
 .clip-view-section {
