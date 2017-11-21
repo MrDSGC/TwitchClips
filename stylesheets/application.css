@@ -45,6 +45,7 @@ body {
   border: none;
   padding: 4px;
   color: white;
+  border-radius: 5px;
 }
 
 .trending {
@@ -208,6 +209,8 @@ body {
   padding: 10px;
   position: absolute;
   z-index: 1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 
 }
 
