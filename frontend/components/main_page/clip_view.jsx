@@ -13,21 +13,15 @@ class ClipView extends React.Component {
   }
 
   viewOutput() {
-    if(this.props.clip === '') {
-      return(
-        <div/>
-      )
-    } else {
-      return(
-        <iframe
-          className="content"
-          src={this.props.clip}
-          frameBorder='0'
-          scrolling='no'
-          align='middle'
-          allowFullScreen='true'></iframe>
-      )
-    }
+    return(
+      <iframe
+        className="content"
+        src={this.props.clip}
+        frameBorder='0'
+        scrolling='no'
+        align='middle'
+        allowFullScreen='true'></iframe>
+    )
   }
 
   render () {
