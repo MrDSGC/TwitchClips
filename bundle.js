@@ -16713,7 +16713,7 @@ var ClipView = function (_React$Component) {
   _createClass(ClipView, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      if (prevProps !== this.props) {
+      if (prevProps.clip == '') {
         this.props.receiveClip(this.props.clips[0].embed_url);
       }
     }

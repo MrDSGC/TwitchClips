@@ -7,7 +7,7 @@ class ClipView extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps !== this.props) {
+    if(prevProps.clip == '') {
       this.props.receiveClip(this.props.clips[0].embed_url);
     }
   }
