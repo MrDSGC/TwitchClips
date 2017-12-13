@@ -218,6 +218,8 @@ body {
   cursor: pointer;
   border-top: solid 1px white;
   border-bottom: solid 1px white;
+  padding-bottom: 4px;
+  padding-top: 4px;
 }
 
 .clip-view-section {
@@ -260,6 +262,12 @@ body {
 .f-list-item {
   font-size: 12px;
   margin-right:10px;
+  padding-bottom: 1px;
+}
+
+.f-list-item:hover {
+  border-bottom: 1px solid white;
+  padding-bottom: 0px;
 }
 
 .f-list-item:last-of-type {
@@ -294,9 +302,6 @@ body {
   border: 1px solid white;
 }
 
-.f-list-item:hover {
-  border-bottom: 1px solid white;
-}
 
 .welcome-title {
   position: absolute;
