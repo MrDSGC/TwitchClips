@@ -16711,71 +16711,22 @@ var ClipView = function (_React$Component) {
   }
 
   _createClass(ClipView, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps !== this.props) {
+        this.props.receiveClip(this.props.clips[0].embed_url);
+      }
+    }
+  }, {
     key: 'viewOutput',
     value: function viewOutput() {
-      if (this.props.clip === '') {
-        return _react2.default.createElement(
-          'div',
-          { className: 'welcome-page' },
-          _react2.default.createElement(
-            'div',
-            { className: 'welcome-title' },
-            'Welcome to Twitch Klips'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'welcome-blurb' },
-            _react2.default.createElement(
-              'text',
-              null,
-              'Find all the top clips for any game or channel on twitch!'
-            ),
-            _react2.default.createElement(
-              'text',
-              { className: 'contact' },
-              'Questions and suggestions can be directed to dcheng47@gmail.com'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'welcome-game-search' },
-            _react2.default.createElement('div', { className: 'left-arrow' }),
-            _react2.default.createElement(
-              'div',
-              { className: 'welcome-text' },
-              'Select or search for games on the left'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'welcome-channel-search' },
-            _react2.default.createElement('div', { className: 'left-arrow' }),
-            _react2.default.createElement(
-              'div',
-              { className: 'welcome-text' },
-              'Search and select for your favorite channels on the left'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'welcome-clip-list' },
-            _react2.default.createElement(
-              'div',
-              { className: 'welcome-text' },
-              'Select a clip from the list below'
-            ),
-            _react2.default.createElement('div', { className: 'down-arrow' })
-          )
-        );
-      } else {
-        return _react2.default.createElement('iframe', {
-          className: 'content',
-          src: this.props.clip,
-          frameBorder: '0',
-          scrolling: 'no',
-          align: 'middle',
-          allowFullScreen: 'true' });
-      }
+      return _react2.default.createElement('iframe', {
+        className: 'content',
+        src: this.props.clip,
+        frameBorder: '0',
+        scrolling: 'no',
+        align: 'middle',
+        allowFullScreen: 'true' });
     }
   }, {
     key: 'render',
@@ -16817,11 +16768,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state) {
   return {
     clip: state.clip,
-    genre: state.genre
+    genre: state.genre,
+    clips: state.clips
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(_clip_view2.default);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveClip: function receiveClip(url) {
+      return dispatch((0, _twitch_actions.receiveClip)(url));
+    }
+  };
+};
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_clip_view2.default);
 
 /***/ }),
 /* 177 */
@@ -17147,15 +17106,7 @@ var GameNav = function (_React$Component) {
       var _this6 = this;
 
       if (this.props.channels.length === 0) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'no-channels-message' },
-          _react2.default.createElement(
-            'div',
-            null,
-            'Search Channels Here!'
-          )
-        );
+        return _react2.default.createElement('div', { className: 'no-channels-message' });
       } else {
         return this.props.channels.map(function (channel, idx) {
           return _react2.default.createElement(
