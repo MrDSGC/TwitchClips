@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dimitri+Swank');
+@import url('https://fonts.googleapis.com/css?family=Bungee');
 
 body, div, section, p, a, ul, li {
   margin: 0;
@@ -70,10 +70,10 @@ body {
 }
 
 .game-title {
-  font-family: 'Dimitri Swank', sans-serif;
+  font-family: 'Bungee', sans-serif;
   font-size: 25px;
   color: white;
-  margin-left: 46px;
+  margin-left: 21px;
 
 }
 
