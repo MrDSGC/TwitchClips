@@ -138,7 +138,7 @@ body {
 }
 
 .window {
-  height: calc(100% - 147px);
+  height: calc(100% - 159px);
   width: 100%;
   display: flex;
   justify-content: center;
